@@ -2,7 +2,7 @@ import { Link as BrowserLink } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import Icon from './Icon';
 import React from 'react';
-import { getUid } from '~/utils';
+import { getUid } from '#package/client/utils';
 
 // Utility link class
 // NOTE: don't use directly

@@ -20,13 +20,12 @@ if (ENV === 'development') {
     initFontLibrary();
 
     window.addEventListener('load', () => {
-        // Determine the basename for the router and grab the entry point.
-        const basename = window.location.pathname || '';
         const entry_point = $('#root');
+        const basename = typeof window !== 'undefined' ? window.location.pathname || '' : '';
 
         // Start rendering
-        ReactDOM.render(
-            <Router basename={basename}>
+        ReactDOM.hydrate(
+            <Router>
                 <App />
             </Router>,
             entry_point

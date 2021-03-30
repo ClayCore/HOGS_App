@@ -8,7 +8,7 @@
         "isolatedModules": true,
         "jsx": "react",
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
-        "module": "esnext",
+        "module": "es6",
         "moduleResolution": "node",
         "noEmit": true,
         "outDir": "public",
@@ -19,11 +19,11 @@
         "target": "ES6",
         "typeRoots": ["node_modules/@types"],
         "paths": {
-            "~/*": ["./src/*"],
+            "#package/client/*": ["./src/*"],
             "#package/assets/*": ["./assets/*"],
             "#package/styles": ["./src/website/styles/*"]
         }
     },
-    "include": ["./src/*", "./typings/**/*.d.ts"],
+    "include": ["./src/*", "./typings/**/*.d.ts", "./server/*"],
     "exclude": ["./node_modules/**/*"]
 }

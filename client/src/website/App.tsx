@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 
-import { $ } from '~/utils';
+import { $ } from '../utils';
 import Container from './components/layout/Display/Container';
 import { Homepage } from './pages';
 import React from 'react';

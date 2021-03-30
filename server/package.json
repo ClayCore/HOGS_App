@@ -1,0 +1,46 @@
+{
+    "name": "hightower-ogs-website-server",
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+        "node": "^15.0.0",
+        "yarn": "^1.12.4"
+    },
+    "browserslist": [
+        "since 2019-12"
+    ],
+    "lint-staged": {
+        "*.{tsx, ts, js, scss}": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "scripts": {
+        "install": "yarn install --ignore-scripts",
+        "build:server": "tsc",
+        "listen": "ts-node -r tsconfig-paths/register src/server.ts",
+        "build": "yarn build:server",
+        "serve": "yarn build:server && yarn listen",
+        "start": "yarn build:server && yarn listen"
+    },
+    "dependencies": {
+        "axios": "^0.21.0",
+        "bluebird": "^3.7.2",
+        "express": "^4.17.1",
+        "luxon": "^1.25.0",
+        "moment": "^2.29.1",
+        "next": "^10.1.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "typescript": "^4.2.3"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.11",
+        "@types/node": "^14.14.14",
+        "@types/react": "^16.9.43",
+        "@types/react-dom": "^16.9.8",
+        "concurrently": "^6.0.0",
+        "ts-node": "^9.1.1",
+        "tsconfig-paths": "^3.9.0"
+    }
+}

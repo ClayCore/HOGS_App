@@ -9,10 +9,6 @@
 // Load all the sub stylesheets
 @use 'pages/homepage.scss';
 
-@use 'sections/about.scss';
-@use 'sections/contact.scss';
-@use 'sections/projects.scss';
-
 // All elements prior to the `main display` are basically containers
 div#root main#container,
 div#root,
