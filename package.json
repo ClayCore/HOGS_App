@@ -27,9 +27,13 @@
         ]
     },
     "scripts": {
-        "build": "parcel build src/index.html --public-url / --out-dir public/",
-        "start": "parcel --no-autoinstall src/index.html --public-url / --out-dir public/",
-        "deploy": "gh-pages -d public/ -b gh-pages"
+        "build:client": "parcel build src/index.html --public-url / --out-dir public/",
+        "build:server": "tsc",
+        "start:client": "parcel --no-autoinstall src/index.html --public-url / --out-dir public/",
+        "start:server": "ts-node -r tsconfig-paths/register src/server.ts",
+        "start": "concurrently \"yarn start:server\" \"yarn start:client\"",
+        "serve": "yarn build:server && yarn start:server",
+        "heroku-postbuild": "yarn build:client"
     },
     "dependencies": {
         "axios": "^0.21.0",
@@ -78,6 +82,7 @@
         "@typescript-eslint/parser": "^4.20.0",
         "babel-plugin-module-resolver": "^4.1.0",
         "babel-preset-react": "^6.24.1",
+        "concurrently": "^6.0.0",
         "eslint": "^7.23.0",
         "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-css-modules": "^2.11.0",
@@ -86,6 +91,8 @@
         "gh-pages": "^3.1.0",
         "parcel-bundler": "^1.12.4",
         "prettier": "^2.1.2",
-        "sass": "^1.26.11"
+        "sass": "^1.26.11",
+        "ts-node": "^9.1.1",
+        "tsconfig-paths": "^3.9.0"
     }
 }
