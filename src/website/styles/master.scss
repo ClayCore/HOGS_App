@@ -1,0 +1,42 @@
+// Global master stylesheet
+@use 'global/reset';
+@use 'global/fonts';
+@use 'global/loader';
+
+@use 'global/variables' as *;
+@use 'global/utils' as *;
+
+// Load all the sub stylesheets
+@use 'pages/homepage.scss';
+
+@use 'sections/about.scss';
+@use 'sections/contact.scss';
+@use 'sections/projects.scss';
+
+// All elements prior to the `main display` are basically containers
+div#root main#container,
+div#root,
+body,
+html {
+    @extend %root-container;
+}
+
+div#root main#container {
+    background: $main-bg;
+}
+
+// Links are going to be white by default
+a {
+    color: $main-fg;
+    text-decoration: none;
+}
+
+// The main wrapper of the webpage.
+div#wrapper {
+    @extend %root-container;
+    @extend %center-container;
+
+    flex-direction: column;
+
+    overflow: hidden;
+}
