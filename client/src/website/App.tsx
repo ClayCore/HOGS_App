@@ -4,7 +4,6 @@ import { $ } from '../utils';
 import Container from './components/layout/Display/Container';
 import { Homepage } from './pages';
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 type Props = Record<string, never>;
 type State = Record<string, never>;
@@ -37,16 +36,12 @@ export default class App extends React.Component<Props, State> {
     }
 
     render(): React.ReactElement<any> {
-        const basename = typeof window !== 'undefined' ? window.location.pathname || '' : '';
-
         return (
-            <Router>
-                <Container>
-                    <Switch>
-                        <Route exact path="/" render={(props) => <Homepage {...props} />} />
-                    </Switch>
-                </Container>
-            </Router>
+            <Container>
+                <Switch>
+                    <Route exact path="/" render={(props) => <Homepage {...props} />} />
+                </Switch>
+            </Container>
         );
     }
 }

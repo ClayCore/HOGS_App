@@ -5,6 +5,7 @@ import { $, initFontLibrary } from './utils';
 import App from './website/App';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const ENV = process.env.NODE_ENV;
 if (ENV === 'development') {
@@ -22,6 +23,11 @@ if (ENV === 'development') {
         const entry_point = $('#root');
 
         // Start rendering
-        ReactDOM.hydrate(<App />, entry_point);
+        ReactDOM.render(
+            <Router>
+                <App />
+            </Router>,
+            entry_point
+        );
     });
 })();
