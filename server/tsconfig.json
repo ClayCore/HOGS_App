@@ -14,10 +14,10 @@
         "target": "es6",
         "typeRoots": ["node_modules/@types"],
         "paths": {
-            "~/*": ["./src/*"],
             "#package/styles/*": ["../client/src/website/styles/*"],
             "#package/client/*": ["../client/src/*"],
-            "#package/assets/*": ["../assets/*"]
+            "#package/assets/*": ["../assets/*"],
+            "#package/server/*": ["./src/*"]
         }
     },
     "include": ["./src/*"],

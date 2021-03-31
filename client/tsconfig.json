@@ -19,8 +19,8 @@
         "target": "ES6",
         "typeRoots": ["node_modules/@types"],
         "paths": {
+            "#package/assets/*": ["../assets/*"],
             "#package/client/*": ["./src/*"],
-            "#package/assets/*": ["./assets/*"],
             "#package/styles": ["./src/website/styles/*"]
         }
     },

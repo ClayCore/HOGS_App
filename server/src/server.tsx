@@ -1,7 +1,7 @@
 import App from '#package/client/website/App';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
@@ -16,10 +16,11 @@ app.use('^/$', (req, res, next) => {
             return res.status(500).send('Could not render the app.');
         }
 
+        const context = {};
         const ssr = ReactDOMServer.renderToString(
-            <Router>
+            <StaticRouter location={req.url} context={context}>
                 <App />
-            </Router>
+            </StaticRouter>
         );
         return res.send(data.replace(`<div id="root"></div>`, `<div id="root">${ssr}</div>`));
     });
