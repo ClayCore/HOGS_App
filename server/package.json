@@ -18,7 +18,7 @@
     "scripts": {
         "install": "yarn install --ignore-scripts",
         "build:server": "tsc",
-        "listen": "ts-node -r tsconfig-paths/register src/server.ts",
+        "listen": "ts-node -r tsconfig-paths/register src/server.tsx",
         "build": "yarn build:server",
         "serve": "yarn build:server && yarn listen",
         "start": "yarn build:server && yarn listen"
