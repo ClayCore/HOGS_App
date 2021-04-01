@@ -18,6 +18,6 @@
 			"#package/assets/*": ["./assets/*"]
 		}
 	},
-	"include": ["./src/**/*", "./src/www/scripts/*", "typings/**/*"],
+	"include": ["./src/**/*", "typings/**/*"],
 	"exclude": ["./node_modules/**/*", "./dist/**/*"]
 }
