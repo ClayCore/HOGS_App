@@ -1,34 +1,55 @@
 {
-    "name": "hightower-ogs-website",
-    "version": "0.1.0",
-    "private": true,
-    "engines": {
-        "node": "^15.0.0",
-        "yarn": "^1.12.4"
-    },
-    "browserslist": [
-        "since 2019-12"
-    ],
-    "lint-staged": {
-        "*.{tsx, ts, js, scss}": [
-            "prettier --write",
-            "git add"
-        ]
-    },
-    "scripts": {
-        "install": "yarn install:client && yarn install:server",
-        "install:client": "cd client && yarn install",
-        "install:server": "cd client && yarn install",
-        "build": "yarn build:server && yarn build:client",
-        "build:client": "cd client && yarn build",
-        "build:server": "cd server && yarn build",
-        "start": "concurrently \"yarn start:server\" \"yarn start:client\"",
-        "start:server": "cd server && yarn start",
-        "start:client": "cd client && yarn start",
-        "serve": "cd server && yarn serve",
-        "heroku-postbuild": "yarn build:client"
-    },
-    "devDependencies": {
-        "concurrently": "6.0.0"
-    }
+	"name": "hightower-ogs-website",
+	"version": "0.1.0",
+	"private": true,
+	"engines": {
+		"node": "^15.0.0",
+		"yarn": "^1.12.4"
+	},
+	"browserslist": [
+		"since 2019-12"
+	],
+	"lint-staged": {
+		"*.{tsx, ts, js, scss}": [
+			"prettier --write",
+			"git add"
+		]
+	},
+	"scripts": {
+		"build": "yarn build:server && yarn build:client",
+		"build:client": "parcel build src/www/index.pug --public-url / --out-dir public/",
+		"start": "concurrently \"yarn start:server\" \"yarn start:client\"",
+		"start:server": "ts-node -r tsconfig-paths/register src/server.tsx",
+		"start:client": "parcel src/www/index.pug --public-url / --out-dir public/",
+		"serve": "yarn start:server",
+		"heroku-postbuild": "yarn build:client"
+	},
+	"dependencies": {
+		"express": "^4.17.1",
+		"ionicons": "^5.2.3",
+		"pug": "^3.0.2",
+		"typescript": "^4.2.3"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.0.0-0",
+		"@babel/preset-typescript": "^7.13.0",
+		"@fortawesome/fontawesome-svg-core": "^1.2.30",
+		"@fortawesome/free-solid-svg-icons": "^5.15.1",
+		"@types/express": "^4.17.11",
+		"@types/node": "^14.14.14",
+		"@typescript-eslint/eslint-plugin": "^4.20.0",
+		"@typescript-eslint/parser": "^4.20.0",
+		"babel-plugin-module-resolver": "^4.1.0",
+		"babel-preset-react": "^6.24.1",
+		"concurrently": "6.0.0",
+		"eslint": "^7.23.0",
+		"eslint-config-prettier": "^8.1.0",
+		"eslint-plugin-css-modules": "^2.11.0",
+		"eslint-plugin-import": "^2.22.1",
+		"parcel-bundler": "^1.12.4",
+		"prettier": "^2.1.2",
+		"sass": "^1.26.11",
+		"ts-node": "^9.1.1",
+		"tsconfig-paths": "^3.9.0"
+	}
 }

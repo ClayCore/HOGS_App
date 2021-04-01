@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": ".",
+		"esModuleInterop": true,
+		"lib": ["es6", "dom", "es5"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"outDir": "dist",
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "es6",
+		"typeRoots": ["node_modules/@types"],
+		"paths": {
+			"#package/styles/*": ["./src/www/styles/*"],
+			"#package/client/*": ["./src/*"],
+			"#package/assets/*": ["./assets/*"]
+		}
+	},
+	"include": ["./src/*", "./typings/**/*"],
+	"exclude": ["./node_modules/**/*", "./dist/**/*"]
+}
