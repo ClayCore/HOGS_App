@@ -14,25 +14,25 @@ div#root main#container,
 div#root,
 body,
 html {
-    @extend %root-container;
+	@extend %root-container;
 }
 
 div#root main#container {
-    background: $main-bg;
+	background: $main-bg;
 }
 
 // Links are going to be white by default
 a {
-    color: $main-fg;
-    text-decoration: none;
+	color: $main-fg;
+	text-decoration: none;
 }
 
 // The main wrapper of the webpage.
 div#wrapper {
-    @extend %root-container;
-    @extend %center-container;
+	@extend %root-container;
+	@extend %center-container;
 
-    flex-direction: column;
+	flex-direction: column;
 
-    overflow: hidden;
+	overflow: hidden;
 }
