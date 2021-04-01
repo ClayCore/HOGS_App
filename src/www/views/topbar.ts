@@ -13,6 +13,7 @@ const links_dom = $('.links');
 links.forEach((element) => {
 	// Create the 'a' element and set its target.
 	const link = document.createElement('a');
+	link.classList.add('link', 'label');
 	link.href = element.target;
 
 	// Create respective label elements and text nodes
