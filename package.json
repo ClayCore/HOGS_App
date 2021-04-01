@@ -19,7 +19,7 @@
 		"build": "yarn build:server && yarn build:client",
 		"build:client": "parcel build src/www/index.pug --public-url / --out-dir public/",
 		"start": "concurrently \"yarn start:server\" \"yarn start:client\"",
-		"start:server": "ts-node -r tsconfig-paths/register src/server.tsx",
+		"start:server": "ts-node -r tsconfig-paths/register src/server.ts",
 		"start:client": "parcel src/www/index.pug --public-url / --out-dir public/",
 		"serve": "yarn start:server",
 		"heroku-postbuild": "yarn build:client"
