@@ -3,25 +3,19 @@ import * as gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import pug from 'gulp-pug';
-const sass = require('gulp-sass');
+import sass from 'gulp-dart-sass';
 import ts from 'gulp-typescript';
 import uglify from 'gulp-uglify';
 
 const destDir = 'build/';
 const tsProject = ts.createProject('./tsconfig.json');
 
-sass.compiler = require('sass');
-
 function styles() {
 	return gulp
 		.src(['./src/**/*.scss', './src/**/*.sass', '!./src/**/_*.scss'])
 		.pipe(plumber())
-		.pipe(sass({includePaths: './src'}))
-		.pipe(
-			autoprefixer({
-				cascade: false,
-			})
-		)
+		.pipe(sass({ includePaths: ['./src'] }))
+		.pipe(autoprefixer({ cascade: false }))
 		.pipe(sass({ outputStyle: 'compressed' }))
 		.pipe(gulp.dest(destDir));
 }
