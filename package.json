@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"engines": {
-		"node": "^14.0.0",
+		"node": "^15.0.0",
 		"yarn": "^1.12.4"
 	},
 	"browserslist": [
@@ -62,7 +62,7 @@
 		"eslint-plugin-css-modules": "^2.11.0",
 		"eslint-plugin-import": "^2.22.1",
 		"prettier": "^2.1.2",
-		"sass": "^1.26.11",
+		"sass": "^1.32.8",
 		"ts-node": "^9.1.1",
 		"tsconfig-paths": "^3.9.0"
 	}

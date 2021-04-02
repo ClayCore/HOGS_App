@@ -3,18 +3,20 @@ import * as gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import pug from 'gulp-pug';
-import sass from 'gulp-sass';
+const sass = require('gulp-sass');
 import ts from 'gulp-typescript';
 import uglify from 'gulp-uglify';
 
 const destDir = 'build/';
 const tsProject = ts.createProject('./tsconfig.json');
 
+sass.compiler = require('sass');
+
 function styles() {
 	return gulp
 		.src(['./src/**/*.scss', './src/**/*.sass', '!./src/**/_*.scss'])
 		.pipe(plumber())
-		.pipe(sass())
+		.pipe(sass({includePaths: './src'}))
 		.pipe(
 			autoprefixer({
 				cascade: false,
