@@ -3,11 +3,11 @@
 	"version": "0.1.0",
 	"private": true,
 	"engines": {
-		"node": "^15.0.0",
+		"node": "^14.0.0",
 		"yarn": "^1.12.4"
 	},
 	"browserslist": [
-		"since 2019-12"
+		"last 3 versions"
 	],
 	"lint-staged": {
 		"*.{tsx, ts, js, scss}": [
@@ -16,17 +16,24 @@
 		]
 	},
 	"scripts": {
-		"build": "yarn build:server && yarn build:client",
-		"build:client": "parcel build src/www/index.pug --public-url / --out-dir public/",
-		"start": "concurrently \"yarn start:server\" \"yarn start:client\"",
-		"start:server": "ts-node -r tsconfig-paths/register src/server.ts",
-		"start:client": "parcel src/www/index.pug --public-url / --out-dir public/",
-		"serve": "yarn start:server",
-		"heroku-postbuild": "yarn build:client"
+		"build": "gulp build",
+		"start": "ts-node -r tsconfig-paths/register src/server.ts",
+		"dev": "concurrently -k \"gulp watch\" \"ts-node src/livereload.ts\"",
+		"serve": "yarn start",
+		"heroku-postbuild": "yarn build"
 	},
 	"dependencies": {
+		"connect-livereload": "^0.6.1",
 		"express": "^4.17.1",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^7.0.1",
+		"gulp-plumber": "^1.2.1",
+		"gulp-pug": "^4.0.1",
+		"gulp-sass": "^4.1.0",
+		"gulp-typescript": "^6.0.0-alpha.1",
+		"gulp-uglify": "^3.0.2",
 		"ionicons": "^5.2.3",
+		"livereload": "^0.9.3",
 		"pug": "^3.0.2",
 		"typescript": "^4.2.3"
 	},
@@ -36,7 +43,14 @@
 		"@fortawesome/fontawesome-svg-core": "^1.2.30",
 		"@fortawesome/free-solid-svg-icons": "^5.15.1",
 		"@prettier/plugin-pug": "^1.13.5",
+		"@types/connect-livereload": "^0.5.31",
 		"@types/express": "^4.17.11",
+		"@types/gulp": "^4.0.8",
+		"@types/gulp-autoprefixer": "^0.0.32",
+		"@types/gulp-plumber": "^0.0.32",
+		"@types/gulp-sass": "^4.0.0",
+		"@types/gulp-uglify": "^3.0.6",
+		"@types/livereload": "^0.9.0",
 		"@types/node": "^14.14.14",
 		"@typescript-eslint/eslint-plugin": "^4.20.0",
 		"@typescript-eslint/parser": "^4.20.0",
@@ -47,7 +61,6 @@
 		"eslint-config-prettier": "^8.1.0",
 		"eslint-plugin-css-modules": "^2.11.0",
 		"eslint-plugin-import": "^2.22.1",
-		"parcel-bundler": "^1.12.4",
 		"prettier": "^2.1.2",
 		"sass": "^1.26.11",
 		"ts-node": "^9.1.1",
