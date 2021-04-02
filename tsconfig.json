@@ -7,7 +7,7 @@
 		"lib": ["es6", "dom", "es5"],
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"noEmit": true,
+		// "noEmit": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "es6",
@@ -18,6 +18,6 @@
 			"#package/assets/*": ["./assets/*"]
 		}
 	},
-	"include": ["./*.ts", "./app/**/*.ts", "./src/**/*", "./typings/**/*"],
+	"include": ["./src/**/*", "./typings/**/*"],
 	"exclude": ["./build/**/*", "./dist/**/*", "./node_modules/**/*", "./public/**/*"]
 }

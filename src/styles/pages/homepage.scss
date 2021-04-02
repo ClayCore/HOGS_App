@@ -1,9 +1,9 @@
-@use 'www/styles/global/reset';
-@use 'www/styles/global/fonts';
-@use 'www/styles/global/loader';
+@use 'styles/global/reset';
+@use 'styles/global/fonts';
+@use 'styles/global/loader';
 
-@use 'www/styles/global/variables' as *;
-@use 'www/styles/global/utils' as *;
+@use 'styles/global/variables' as *;
+@use 'styles/global/utils' as *;
 
 header {
 	$max-width: 15rem;

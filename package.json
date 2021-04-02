@@ -17,8 +17,8 @@
 	},
 	"scripts": {
 		"build": "gulp build",
-		"start": "ts-node -r tsconfig-paths/register src/server.ts",
-		"dev": "concurrently -k \"gulp watch\" \"ts-node src/livereload.ts\"",
+		"start": "node build/server.js",
+		"dev": "concurrently -k \"gulp watch\" \"ts-node build/livereload.js\"",
 		"serve": "yarn start",
 		"heroku-postbuild": "yarn build"
 	},
