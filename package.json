@@ -17,13 +17,14 @@
 	},
 	"scripts": {
 		"build": "gulp build",
-		"start": "node build/server.js",
-		"dev": "concurrently -k \"gulp watch\" \"ts-node build/livereload.js\"",
+		"start": "cross-env NODE_ENV=production node build/server.js",
+		"dev": "cross-env NODE_ENV=development concurrently -k \"gulp watch\" \"node build/server.js\"",
 		"serve": "yarn start",
 		"heroku-postbuild": "yarn build"
 	},
 	"dependencies": {
 		"connect-livereload": "^0.6.1",
+		"cross-env": "^7.0.3",
 		"express": "^4.17.1",
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^7.0.1",
@@ -32,7 +33,6 @@
 		"gulp-typescript": "^6.0.0-alpha.1",
 		"gulp-uglify": "^3.0.2",
 		"ionicons": "^5.2.3",
-		"livereload": "^0.9.3",
 		"pug": "^3.0.2",
 		"typescript": "^4.2.3"
 	},
@@ -50,7 +50,6 @@
 		"@types/gulp-plumber": "^0.0.32",
 		"@types/gulp-sass": "^4.0.0",
 		"@types/gulp-uglify": "^3.0.6",
-		"@types/livereload": "^0.9.0",
 		"@types/node": "^14.14.14",
 		"@typescript-eslint/eslint-plugin": "^4.20.0",
 		"@typescript-eslint/parser": "^4.20.0",
@@ -62,6 +61,7 @@
 		"eslint-plugin-css-modules": "^2.11.0",
 		"eslint-plugin-import": "^2.22.1",
 		"gulp-dart-sass": "^1.0.2",
+		"gulp-livereload": "^4.0.2",
 		"prettier": "^2.1.2",
 		"sass": "^1.32.8",
 		"ts-node": "^9.1.1",
