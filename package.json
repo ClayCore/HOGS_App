@@ -23,8 +23,9 @@
 		"heroku-postbuild": "yarn build"
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.30",
+		"@fortawesome/free-solid-svg-icons": "^5.15.1",
 		"connect-livereload": "^0.6.1",
-		"cross-env": "^7.0.3",
 		"express": "^4.17.1",
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^7.0.1",
@@ -39,8 +40,6 @@
 	"devDependencies": {
 		"@babel/core": "^7.0.0-0",
 		"@babel/preset-typescript": "^7.13.0",
-		"@fortawesome/fontawesome-svg-core": "^1.2.30",
-		"@fortawesome/free-solid-svg-icons": "^5.15.1",
 		"@prettier/plugin-pug": "^1.13.5",
 		"@types/connect-livereload": "^0.5.31",
 		"@types/express": "^4.17.11",
@@ -56,6 +55,7 @@
 		"babel-plugin-module-resolver": "^4.1.0",
 		"babel-preset-react": "^6.24.1",
 		"concurrently": "6.0.0",
+		"cross-env": "^7.0.3",
 		"eslint": "^7.23.0",
 		"eslint-config-prettier": "^8.1.0",
 		"eslint-plugin-css-modules": "^2.11.0",
