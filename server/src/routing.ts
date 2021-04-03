@@ -14,7 +14,7 @@ if (NODE_ENV == 'development') {
 	console.log('Assuming production environment.')
 }
 
-app.use(express.static('./build'));
-app.use(express.static('./assets'));
+app.use(express.static('client/build'));
+app.use(express.static('assets'));
 
 export default app;
