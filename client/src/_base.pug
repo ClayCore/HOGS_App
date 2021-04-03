@@ -10,8 +10,8 @@ html(lang='en')
 		meta(name='keywords', content='tf2, hightower, server, vanilla, nocrits, nospread, nocarts')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
+		//- Stylesheets
 		link(href='/base.css', rel='stylesheet')
-		//- Add font awesome.
 		link(href='/fonts/FontAwesome/css/all.min.css', rel='stylesheet')
 
 		//- Extend this to add more <head> contents. 
@@ -24,7 +24,12 @@ html(lang='en')
 				//- Extend this to add content.
 				block content
 
-				include views/_footer.pug
+		//- Ionic icons
+		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js', type='module')
+		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js', nomodule)
+
+		//- Rellax parallax
+		script(src='/script/rellax.min.js')
 
 		//- Base scripts that will run on all pages.
 		script(src='/script/base.js', type='module')
