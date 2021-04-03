@@ -1,19 +1,18 @@
 import express from 'express';
+import livereload from 'connect-livereload';
 
 const app = express();
 
-console.log(app.get('env'));
+const NODE_ENV = process.env.NODE_ENV;
 
-if (process.env.NODE_ENV == 'development') {
-	// eslint-disable-next-line @typescript-eslint/no-var-requires
-	app.use(require('connect-livereload')());
+console.log('NODE_ENV: ' + NODE_ENV);
+
+if (NODE_ENV == 'development') {
+	app.use(livereload());
+	console.log('Livereload middleware initialized.');
+} else {
+	console.log('Assuming production environment.')
 }
-
-app.get('/', (_, res) => res.sendFile('index.html', { root: './build' }));
-app.get('/ban_appeal', (_, res) => res.sendFile('ban_appeal.html', { root: './build' }));
-app.get('/contact', (_, res) => res.sendFile('contact.html', { root: './build' }));
-app.get('/feedback', (_, res) => res.sendFile('feedback.html', { root: './build' }));
-app.get('/home', (_, res) => res.sendFile('home.html', { root: './build' }));
 
 app.use(express.static('./build'));
 app.use(express.static('./assets'));
