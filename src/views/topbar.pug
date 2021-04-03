@@ -1,7 +1,3 @@
-mixin link(text, target)
-	a.link(href=target)
-		label= text
-
 header 
 	#logo 
 		//- Add transparent logo image here
@@ -12,5 +8,5 @@ header
 			var list = [['Home', '/'], ['Server Stats', '/server_stats'], ['Ban Appeal', '/ban_appeal'],
 						['Feedback', '/feedback'], ['Contact', '/contact']]
 		each anchor in list
-			a(href=anchor[1])
+			a.link.label(href=anchor[1])
 				span= anchor[0]

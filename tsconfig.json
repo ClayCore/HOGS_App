@@ -18,5 +18,5 @@
 		}
 	},
 	"include": ["./src/**/*", "./typings/**/*"],
-	"exclude": ["./build/**/*", "./dist/**/*", "./node_modules/**/*", "./public/**/*"]
+	"exclude": ["./build/**/*", "./dist/**/*", "./node_modules/**/*", "./public/**/*", "./assets/**/*"]
 }
