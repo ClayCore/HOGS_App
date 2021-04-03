@@ -5,6 +5,7 @@ const app = express();
 console.log(app.get('env'));
 
 if (process.env.NODE_ENV == 'development') {
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	app.use(require('connect-livereload')());
 }
 
