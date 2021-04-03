@@ -1,0 +1,47 @@
+extends _base.pug
+
+block content
+	main.rellax(data-rellax-speed='-4')
+		section#top
+			//- img(src='/graphics/small_logo.png')
+			a(href='steam://connect/89.34.96.159:27015/')
+				span Join now!
+		//- All quick info about the server
+		section#about
+			h1 About the community
+			.column
+				h2 Links
+				article
+					.row Join us on Steam!
+						//- Steam icon
+						//- Steam link
+					.row Chat with us!
+						//- Discord icon
+						//- Discord link
+			.column
+				h2 Rules of the server
+				article
+					//- Blah blah, bullet-point list on rules
+			.column
+				h2 Info
+				article 
+					//- Short bio of the server
+		//- Where to give feedback on the server (aka. redirect to steam group or to the built-in issue tracker)
+		section#feedback
+			h1 Want to give us feedback?
+			h2 We want to hear from you!
+
+			.tile 
+				header Map feedback:
+					p Share it on Steam
+			.tile 
+				header Server feedback:
+					p Share it on Discord
+		//- Link to profiles of all staff members
+		section#contact
+			h1 Contact the staff
+			.row
+				h1 Administration
+
+		//- Add the footer
+		include views/_footer.pug

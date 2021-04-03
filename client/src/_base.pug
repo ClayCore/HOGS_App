@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+	head
+		title Hightower OGs
+
+		meta(charset='UTF-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='author', content='Claymore, Junior & Fuel-Black')
+		meta(name='description', content='Semi-Vanilla TF2 Hightower Server')
+		meta(name='keywords', content='tf2, hightower, server, vanilla, nocrits, nospread, nocarts')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+		//- Stylesheets
+		link(href='/base.css', rel='stylesheet')
+		link(href='/fonts/FontAwesome/css/all.min.css', rel='stylesheet')
+
+		//- Extend this to add more <head> contents. 
+		block head
+	body
+		#wrapper 
+			#page
+				include views/_topbar.pug
+
+				//- Extend this to add content.
+				block content
+
+		//- Ionic icons
+		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js', type='module')
+		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js', nomodule)
+
+		//- Rellax parallax
+		script(src='/script/rellax.min.js')
+
+		//- Base scripts that will run on all pages.
+		script(src='/script/base.js', type='module')
