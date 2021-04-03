@@ -21,7 +21,7 @@ export const getRandomInt = (min: number, max: number): number => {
 };
 
 export const getUid = (length: number): string => {
-	let uid: string = '';
+	let uid = '';
 
 	const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
