@@ -29,7 +29,7 @@ const scripts = () => (
 	tsProject.src()
 	.pipe(plumber())
 	.pipe(tsProject())
-	.pipe(uglify())
+	// .pipe(uglify())
 	.pipe(gulp.dest(destDir))
 	.pipe(livereload())
 );

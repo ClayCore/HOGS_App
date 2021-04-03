@@ -10,24 +10,21 @@ html(lang='en')
 		meta(name='keywords', content='tf2, hightower, server, vanilla, nocrits, nospread, nocarts')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
-		//- Add font awesome 
+		link(href='/base.css', rel='stylesheet')
+		//- Add font awesome.
 		link(href='/fonts/FontAwesome/css/all.min.css', rel='stylesheet')
-	body
-		//- Loader
-		#loader-container 
-			#loader-wrapper
-				img.loader(src='/icons/spinner.png')
 
-		//- Main app content
+		//- Extend this to add more <head> contents. 
+		block head
+	body
 		#wrapper 
 			#page
-				include views/topbar.pug
-				include pages/home.pug
-				include views/footer.pug
+				include views/_topbar.pug
 
-		//- IonicIcons
-		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js', type='module')
-		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js', nomodule)
+				//- Extend this to add content.
+				block content
 
-		//- Main entry point script
-		script(src='/scripts/main.js', type='module')
+				include views/_footer.pug
+
+		//- Base scripts that will run on all pages.
+		script(src='/script/base.js', type='module')

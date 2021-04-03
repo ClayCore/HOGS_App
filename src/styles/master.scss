@@ -6,9 +6,6 @@
 @use 'global/variables' as *;
 @use 'global/utils' as *;
 
-// Load all the sub stylesheets
-@use 'pages/homepage.scss';
-
 // All elements prior to the `main display` are basically containers
 div#wrapper,
 body,

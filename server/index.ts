@@ -1,4 +1,4 @@
-import app from './index';
+import app from './routing';
 
 const port = process.env.port || 3000;
 

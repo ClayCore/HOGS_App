@@ -2,21 +2,14 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
-		"baseUrl": ".",
+		"rootDir": "./src",
+		"baseUrl": "./src",
 		"esModuleInterop": true,
-		"lib": ["es6", "dom", "es5"],
-		"module": "commonjs",
 		"moduleResolution": "node",
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "es6",
 		"typeRoots": ["node_modules/@types"],
-		"paths": {
-			"#package/styles/*": ["./src/www/styles/*"],
-			"#package/client/*": ["./src/*"],
-			"#package/assets/*": ["./assets/*"]
-		}
 	},
 	"include": ["./src/**/*", "./typings/**/*"],
-	"exclude": ["./build/**/*", "./node_modules/**/*", "./assets/**/*"]
 }

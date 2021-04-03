@@ -5,6 +5,21 @@
 @use 'styles/global/variables' as *;
 @use 'styles/global/utils' as *;
 
+// All elements prior to the `main display` are basically containers
+div#wrapper,
+body,
+html {
+	@extend %root-container;
+	background: $main-bg;
+}
+
+// Links are going to be white by default
+a {
+	color: $main-bg;
+	text-decoration: none;
+}
+
+
 header {
 	$max-width: 15rem;
 

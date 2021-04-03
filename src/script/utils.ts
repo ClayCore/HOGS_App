@@ -1,5 +1,5 @@
 // Getting an element or a list of elements
-export const $ = (what: string): Element | null => {
+export const $ = (what: string): HTMLElement | null => {
 	return document.querySelector(what);
 };
 
