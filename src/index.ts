@@ -16,5 +16,6 @@ app.get('/feedback', (_, res) => res.sendFile('feedback.html', { root: './build'
 app.get('/home', (_, res) => res.sendFile('home.html', { root: './build' }));
 
 app.use(express.static('./build'));
+app.use(express.static('./assets'));
 
 export default app;
