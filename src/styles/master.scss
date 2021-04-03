@@ -14,9 +14,6 @@ div#wrapper,
 body,
 html {
 	@extend %root-container;
-}
-
-div#wrapper div#page {
 	background: $main-bg;
 }
 

@@ -1,5 +1,3 @@
-import { $ } from './utils';
-
 (function () {
 	// How long should we wait for the DOM to finish loading? (in ms)
 	const LOADER_TIMEOUT = 2000;
@@ -20,15 +18,17 @@ import { $ } from './utils';
 		loadStyle();
 
 		// Remove the loader after `LOADER_TIMEOUT` ms.
-		resolveLoader().then(() => {
-			const loader = $('#loader-container');
-			if (loader) {
-				loader.classList.add('loaded');
+		window.addEventListener('load', () => {
+			resolveLoader().then(() => {
+				const loader = document.querySelector('#loader-container');
+				if (loader) {
+					loader.classList.add('loaded');
 
-				setTimeout(() => {
-					loader.outerHTML = '';
-				}, LOADER_TIMEOUT);
-			}
+					setTimeout(() => {
+						loader.outerHTML = '';
+					}, LOADER_TIMEOUT);
+				}
+			});
 		});
 	};
 
