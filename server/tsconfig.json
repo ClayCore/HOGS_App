@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"rootDir": "src",
+		"baseUrl": "src",
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "es6",
+		"typeRoots": ["node_modules/@types"],
+		"module": "commonjs",
+	},
+	"include": ["src/**/*", "typings/**/*"],
+}

@@ -19,7 +19,8 @@
 *.pid
 *.pid.lock
 *.seed
-build/
+client/build/
+server/build/
 dist/
 public/
 target/

@@ -7,58 +7,59 @@ const ts = require('gulp-typescript');
 const uglify = require('gulp-uglify');
 const livereload = require('gulp-livereload');
 
-const destDir = 'build/';
-const tsProject = ts.createProject('./tsconfig.json');
+const tsServer = ts.createProject('server/tsconfig.json');
+const tsClient = ts.createProject('client/tsconfig.json');
 
-const styles = () => (
+const tasks = {};
+
+tasks.server = () => (
+	tsServer.src()
+	.pipe(plumber())
+	.pipe(tsServer())
+	// .pipe(uglify())
+	.pipe(gulp.dest('server/build'))
+	.pipe(livereload())
+);
+
+tasks.ts = () => (
+	tsClient.src()
+	.pipe(plumber())
+	.pipe(tsClient())
+	// .pipe(uglify())
+	.pipe(gulp.dest('client/build'))
+	.pipe(livereload())
+);
+
+tasks.sass = () => (
+	// Exclude files starting with an underscore.
 	gulp.src([
-		'./src/**/*.scss',
-		'./src/**/*.sass',
-		// Exclude files starting with an underscore.
-		'!./src/**/_*.scss'
+		'client/src/**/!(_)*.scss',
+		'client/src/**/!(_)*.sass',
 	])
 	.pipe(plumber())
-	.pipe(sass({ includePaths: ['./src'] }))
+	.pipe(sass({ includePaths: ['client/src'] }))
 	.pipe(autoprefixer({ cascade: false }))
 	.pipe(sass({ outputStyle: 'compressed' }))
-	.pipe(gulp.dest(destDir))
+	.pipe(gulp.dest('client/build'))
 	.pipe(livereload())
 );
 
-const scripts = () => (
-	tsProject.src()
-	.pipe(plumber())
-	.pipe(tsProject())
-	// .pipe(uglify())
-	.pipe(gulp.dest(destDir))
-	.pipe(livereload())
-);
-
-const pages = () => (
-	gulp.src([
-		'./src/**/*.pug',
-		// Exclude files starting with an underscore.
-		'!./src/**/_*.pug'
-	])
+tasks.pug = () => (
+	// Exclude files starting with an underscore.
+	gulp.src('client/src/**/!(_)*.pug')
 	.pipe(plumber())
 	.pipe(pug())
-	.pipe(gulp.dest(destDir))
+	.pipe(gulp.dest('client/build'))
 	.pipe(livereload())
 );
 
-const watch = () => {
+tasks.watch = () => {
 	livereload.listen();
-	gulp.watch('./src/**/*.scss', styles);
-	gulp.watch('./src/**/*.ts', scripts);
-	gulp.watch('./src/**/*.pug', pages);
+	gulp.watch('client/src/**/*.(scss|sass)', tasks.sass);
+	gulp.watch('client/src/**/*.ts', tasks.ts);
+	gulp.watch('client/src/**/*.pug', tasks.pug);
 };
 
-const build = gulp.parallel(styles, scripts, pages);
+tasks.build = gulp.parallel(tasks.ts, tasks.sass, tasks.pug);
 
-module.exports = {
-	build: build,
-	watch: watch,
-	styles: styles,
-	scripts: scripts,
-	pages: pages,
-}
+module.exports = tasks;
