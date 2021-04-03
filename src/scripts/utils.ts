@@ -16,7 +16,6 @@ export const getUid = (length: number): string => {
 	let uid = '';
 
 	const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
 	for (let i = 0; i < length; ++i) {
 		uid += chars[getRandomInt(0, chars.length - 1)];
 	}

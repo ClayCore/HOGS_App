@@ -13,7 +13,7 @@ header {
 	flex-direction: row;
 
 	width: 100%;
-	height: 6rem;
+	height: 4rem;
 
 	position: fixed;
 	top: 0;
@@ -35,8 +35,8 @@ header {
 	font-weight: 400;
 	letter-spacing: 0.1vh;
 
-	background-color: $main-fg;
-	color: $main-bg;
+	background-color: $main-bg;
+	color: $main-fg;
 
 	transition: all 0.2s linear;
 
@@ -86,6 +86,8 @@ header {
 			font-weight: 400;
 			text-shadow: 1px 1px 2px $shadow-color;
 
+			color: $main-fg;
+
 			border-bottom: 0.2rem solid rgba($accent, 0.3);
 
 			transition: all 0.2s linear;
@@ -117,19 +119,6 @@ header {
 	div.separator {
 		width: calc(100% / 4);
 		height: 100%;
-	}
-}
-
-div#topbar.is-scrolled {
-	background-color: $main-fg;
-	color: $main-bg;
-
-	height: 4rem;
-
-	nav {
-		a.link {
-			color: $secondary-fg;
-		}
 	}
 }
 

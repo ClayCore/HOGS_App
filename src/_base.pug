@@ -16,13 +16,14 @@ html(lang='en')
 		//- Loader
 		#loader-container 
 			#loader-wrapper
-				img.loader(src='/icons/spinner.svg')
+				img.loader(src='/icons/spinner.png')
 
 		//- Main app content
 		#wrapper 
 			#page
 				include views/topbar.pug
-				footer
+				include pages/home.pug
+				include views/footer.pug
 
 		//- IonicIcons
 		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js', type='module')
