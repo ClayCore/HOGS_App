@@ -1,16 +1,32 @@
 doctype html
 html(lang='en')
 	head
-		meta(charset='UTF-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge')
-		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		title Hightower OGs
 
-		link(href='../assets/fonts/FontAwesome/css/all.css', rel='stylesheet')
+		meta(charset='UTF-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='author', content='Claymore, Junior & Fuel-Black')
+		meta(name='description', content='Semi-Vanilla TF2 Hightower Server')
+		meta(name='keywords', content='tf2, hightower, server, vanilla, nocrits, nospread, nocarts')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+		//- Add font awesome 
+		link(href='/fonts/FontAwesome/css/all.min.css', rel='stylesheet')
 	body
+		//- Loader
+		#loader-container 
+			#loader-wrapper
+				img.loader(src='/icons/spinner.svg')
+
+		//- Main app content
 		#wrapper 
 			#page
 				include views/topbar.pug
-				//- {this.props.children}
 				footer
+
+		//- IonicIcons
+		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js', type='module')
+		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js', nomodule)
+
+		//- Main entry point script
 		script(src='/scripts/main.js')

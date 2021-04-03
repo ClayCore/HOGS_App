@@ -1,6 +1,5 @@
-// Stupid hack to bypass having to use webpack instead of parcel for resolving paths in scss
-$roboto-path: '~/../../assets/fonts/Roboto';
-$roboto_slab-path: '~/../../assets/fonts/RobotoSlab';
+$roboto-path: '/fonts/Roboto';
+$roboto_slab-path: '/fonts/RobotoSlab';
 
 @font-face {
 	font-family: 'Roboto Slab';
