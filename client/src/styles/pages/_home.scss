@@ -87,7 +87,7 @@ section#top {
 }
 
 div#page {
-	&.main {
+	main {
 		@extend %center-container;
 
 		flex-direction: column;
@@ -105,6 +105,7 @@ div#page {
 			position: relative;
 
 			background-color: $main-bg;
+			color: $main-fg;
 		}
 	}
 }

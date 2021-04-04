@@ -1,5 +1,12 @@
 extends _base.pug
 
+block head
+	//- Rellax parallax
+	script(src='/vendor/js/rellax.min.js')
+
+	script.
+		var rellax = new Rellax(".rellax");
+	
 block content
 	section#top.rellax(data-rellax-speed='-4', data-rellax-percentage='0.5')
 		//- Quick info about the server.
