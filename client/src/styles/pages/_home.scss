@@ -15,7 +15,8 @@ section#top::before {
 	background-attachment: fixed;
 	background-position-y: 4rem;
 
-	filter: blur(5px) sepia(80%) hue-rotate(-10deg) brightness(0.3);
+	// TODO: apply those filters in PS/Krita later
+	// filter: blur(5px) sepia(80%) hue-rotate(-10deg) brightness(0.3);
 }
 
 section#top {
