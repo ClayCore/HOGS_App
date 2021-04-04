@@ -14,8 +14,6 @@ body,
 html {
 	@extend %root-container;
 	background: $main-bg;
-
-	overflow: auto;
 }
 
 div#wrapper {
@@ -23,7 +21,6 @@ div#wrapper {
 	@extend %center-container;
 
 	flex-direction: column;
-	overflow: hidden;
 }
 
 // Links are going to be white by default
@@ -48,7 +45,7 @@ header#topbar {
 	padding-left: $max-width;
 	padding-right: $max-width;
 
-	border-bottom-width: 0.15vmax;
+	border-bottom-width: 0.2rem;
 	border-bottom-style: solid;
 	border-image-source: linear-gradient(
 		90deg,
@@ -159,17 +156,72 @@ header#topbar {
 }
 
 div#page {
+	@extend %center-container;
+
+	flex-direction: column;
+
 	width: 100%;
 	height: 2080px;
 
 	background-color: transparent;
 
+	overflow-y: scroll;
+
 	color: $secondary-fg;
-}
 
-footer {
-	@extend %center-container;
+	footer {
+		$max-width: 20rem;
 
-	width: 100%;
-	height: 10rem;
+		@extend %center-container;
+
+		position: relative;
+		bottom: 0;
+
+		width: 60%;
+		height: 6rem;
+
+		// padding-left: $max-width;
+		// padding-right: $max-width;
+
+		background-color: $main-bg;
+		color: $main-fg;
+
+		font-family: 'Roboto Slab';
+		font-size: 1rem;
+		font-weight: 400;
+		letter-spacing: 0.1rem;
+
+		text-shadow: 2px 2px 3px $shadow-color;
+
+		section.column {
+			@extend %center-container;
+
+			width: 50%;
+			height: 100%;
+
+			a.tile {
+				@extend %center-container;
+
+				flex-direction: column;
+
+				width: auto;
+				height: 100%;
+
+				color: $main-fg;
+
+				i {
+					font-size: 2.5rem;
+					padding-bottom: 0.5rem;
+				}
+
+				transition: all 0.2s linear;
+			}
+
+			a.tile:hover {
+				color: $accent;
+
+				transform: scale(1.1);
+			}
+		}
+	}
 }

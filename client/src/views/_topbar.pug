@@ -5,8 +5,8 @@ header#topbar
 	.separator
 	nav.links
 		-
-			var list = [['Home', '/'], ['Server Stats', '/server_stats'], ['Ban Appeal', '/ban_appeal'],
-						['Feedback', '/feedback'], ['Contact', '/contact']]
+			var list = [['Home', '#top'], ['Server Stats', '/server_stats'], ['Ban Appeal', '/ban_appeal'],
+						['Feedback', '#feedback'], ['Contact', '#contact']]
 		each anchor in list
 			a.link.label(href=anchor[1])
 				span= anchor[0]

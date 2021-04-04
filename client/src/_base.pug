@@ -26,16 +26,15 @@ html(lang='en')
 				//- Extend this to add content.
 				block content
 
-			//- Footer
-			include views/_footer.pug
+				//- Footer
+				include views/_footer.pug
 
 		//- Ionic icons
 		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js', type='module')
 		script(src='https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js', nomodule)
 
 		//- Rellax parallax
-		//- TODO: re-add this back once gulp starts serving raw js files
-		//- script(src='/script/rellax.min.js')
+		script(src='/vendor/js/rellax.min.js')
 
 		//- Base scripts that will run on all pages.
 		script(src='/script/base.js', type='module')
