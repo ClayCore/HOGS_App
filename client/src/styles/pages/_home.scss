@@ -10,6 +10,8 @@ section#top::before {
 	width: 100%;
 	height: 150%;
 
+	mix-blend-mode: normal;
+
 	background-image: url('/graphics/intro.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -22,13 +24,16 @@ section#top {
 	flex-direction: column;
 	position: relative;
 
-	height: 48rem;
+	height: 64rem;
 
 	color: $main-fg;
 
-	text-shadow: 4px 4px 5px $shadow-color;
+	isolation: isolate;
+
+	text-shadow: 2px 2px 2px $shadow-color;
 
 	* {
+		mix-blend-mode: hard-light;
 		position: relative;
 	}
 
@@ -69,8 +74,8 @@ section#top {
 		border-radius: 0.2vmax;
 		color: $main-fg;
 
-		box-shadow: 4px 4px 5px 0px $shadow-color;
-		text-shadow: 4px 4px 5px $shadow-color;
+		box-shadow: 2px 2px 2px 0px $shadow-color;
+		text-shadow: 2px 2px 2px $shadow-color;
 
 		transition: all 0.2s linear;
 	}
@@ -96,13 +101,133 @@ div#page {
 		section {
 			@extend %center-container;
 
-			width: 60%;
+			width: 75%;
 			height: auto;
 
 			position: relative;
 
 			background-color: $main-bg;
 			color: $main-fg;
+
+			text-shadow: 2px 2px 2px $shadow-color;
+		}
+
+		section#about {
+			flex-direction: column;
+
+			justify-content: flex-start;
+
+			height: 20rem;
+
+			h1 {
+				@extend %center-container;
+
+				width: 100%;
+				height: 2rem;
+
+				font-size: 1.5rem;
+				font-weight: 400;
+
+				letter-spacing: 0.1rem;
+
+				border-bottom-width: 0.2rem;
+				border-bottom-style: solid;
+				border-image-source: linear-gradient(
+					90deg,
+					rgba(255, 255, 255, 0) 0%,
+					rgba($accent, 1) 50%,
+					rgba(0, 212, 255, 0) 100%
+				);
+				border-image-slice: 1;
+				border-image-width: 2.5rem;
+			}
+
+			.col-container {
+				@extend %center-container;
+
+				justify-content: stretch;
+				align-items: flex-start;
+
+				width: 100%;
+				height: calc(100% - 2rem);
+
+				.column {
+					width: 100%;
+
+					h2 {
+						@extend %center-container;
+
+						width: 100%;
+						height: 2rem;
+
+						font-size: 1.2rem;
+						font-weight: 400;
+
+						letter-spacing: 0.1rem;
+
+						border-bottom-width: 0.2rem;
+						border-bottom-style: solid;
+						border-image-source: linear-gradient(
+							90deg,
+							rgba(255, 255, 255, 0) 0%,
+							rgba($accent, 0.5) 50%,
+							rgba(0, 212, 255, 0) 100%
+						);
+						border-image-slice: 1;
+					}
+
+					article {
+						@extend %center-container;
+
+						flex-direction: column;
+						align-items: flex-start;
+
+						padding: 1rem;
+
+						font-size: 1rem;
+						font-weight: 400;
+						letter-spacing: 0.1rem;
+
+						line-height: 2rem;
+
+						width: 100%;
+
+						a {
+							@extend %center-container;
+
+							display: flex;
+							flex-direction: column;
+
+							width: 100%;
+							height: 50%;
+
+							padding: 1rem;
+
+							color: $main-fg;
+
+							transition: all 0.2s linear;
+
+							.icon {
+								@extend %center-container;
+
+								width: 3rem;
+								height: 3rem;
+
+								font-size: 2.75rem;
+
+								padding: 2rem;
+							}
+						}
+
+						a:hover {
+							transform: scale(1.1);
+							border-color: $accent;
+
+							color: $accent;
+						}
+					}
+				}
+			}
 		}
 	}
 }
