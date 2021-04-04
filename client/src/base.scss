@@ -18,13 +18,21 @@ html {
 	overflow: auto;
 }
 
+div#wrapper {
+	@extend %root-container;
+	@extend %center-container;
+
+	flex-direction: column;
+	overflow: hidden;
+}
+
 // Links are going to be white by default
 a {
 	color: $main-bg;
 	text-decoration: none;
 }
 
-div#page header#topbar {
+header#topbar {
 	$max-width: 15rem;
 
 	@extend %center-container;
@@ -151,10 +159,6 @@ div#page header#topbar {
 }
 
 div#page {
-	@extend %center-container;
-
-	flex-direction: column;
-
 	position: relative;
 
 	width: 100%;
@@ -165,7 +169,7 @@ div#page {
 	color: $secondary-fg;
 }
 
-div#page footer {
+footer {
 	@extend %center-container;
 
 	width: 100%;
