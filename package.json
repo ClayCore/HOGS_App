@@ -26,6 +26,7 @@
 		"heroku-postbuild": "yarn build"
 	},
 	"dependencies": {
+		"axios": "^0.21.1",
 		"connect-livereload": "^0.6.1",
 		"express": "^4.17.1",
 		"ts-node": "^9.1.1",
