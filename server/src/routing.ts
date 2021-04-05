@@ -14,17 +14,16 @@ if (NODE_ENV == 'development') {
 	console.log('Assuming production environment.');
 }
 
+// Just for testing
+app.set('views', 'client/src/');
+app.get('/', (req, res) => {
+	res.render('index.pug', { userAvatar: 'lolTest123' });
+});
+
 app.use(express.static('client/build'));
 app.use(express.static('assets'));
 
 // TODO: rewrite each of the routes as separate files and
 // add them all here at the end
-
-// Just for testing
-// app.set('view engine', 'pug');
-app.set('views', 'client/src/');
-app.get('/', (req, res) => {
-	res.render('index.pug', { userAvatar: 'lolTest123' });
-});
 
 export default app;
