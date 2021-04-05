@@ -1,18 +1,20 @@
 *                   text=auto
 
+assets/*			linguist-vendored
+
 *.bash              text eol=lf
 *.bat               text eol=crlf
 *.cmd               text eol=crlf
 *.coffee            text
-*.css               text
+*.css               text linguist-generated
 *.htm               text diff=html
 *.html              text diff=html
 *.inc               text
 *.ini               text
-*.js                text
+*.js                text linguist-vendored
 *.json              text
 *.jsx               text
-*.less              text
+*.less              text linguist-vendored
 *.ls                text
 *.map               text -diff
 *.od                text
