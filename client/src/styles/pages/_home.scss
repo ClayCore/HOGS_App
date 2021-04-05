@@ -306,6 +306,42 @@ div#page {
 				);
 				border-image-slice: 1;
 			}
+
+			.tile {
+				a {
+					@extend %center-container;
+
+					display: flex;
+					flex-direction: column;
+
+					width: 100%;
+					height: 50%;
+
+					padding: 1rem;
+
+					color: $main-fg;
+
+					transition: all 0.2s linear;
+
+					.icon {
+						@extend %center-container;
+
+						width: 3rem;
+						height: 3rem;
+
+						font-size: 2.75rem;
+
+						padding: 2rem;
+					}
+				}
+
+				a:hover {
+					transform: scale(1.1);
+					border-color: $accent;
+
+					color: $accent;
+				}
+			}
 		}
 	}
 }
