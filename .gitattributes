@@ -1,6 +1,6 @@
 *                   text=auto
 
-assets/*			linguist-vendored
+/assets/**			linguist-vendored
 
 *.bash              text eol=lf
 *.bat               text eol=crlf
