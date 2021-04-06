@@ -10,7 +10,7 @@ function getUserAvatar(steamId: string) {
 		.then((response) => response.data)
 		.then((text: string) => {
 			// Parse all the incoming HTML
-			// amnd retrieve the userAvatar url
+			// and retrieve the userAvatar url
 			const parser = new jsdom.JSDOM(text);
 			const userAvatar = parser.window.document.querySelector('.playerAvatar img');
 
