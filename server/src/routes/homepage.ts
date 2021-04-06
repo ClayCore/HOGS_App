@@ -1,5 +1,6 @@
 import axios from 'axios';
 import express from 'express';
+import jsdom from 'jsdom';
 
 function getUserAvatar(steamId: string) {
 	const profileId = `https://steamcommunity.com/profiles/${steamId}`;
