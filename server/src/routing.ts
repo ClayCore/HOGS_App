@@ -1,4 +1,5 @@
 import express from 'express';
+import homepage from './routes/homepage';
 import livereload from 'connect-livereload';
 
 const app = express();
@@ -14,16 +15,14 @@ if (NODE_ENV == 'development') {
 	console.log('Assuming production environment.');
 }
 
-// Just for testing
+// Use the client dir for rendering pug
 app.set('views', 'client/src/');
-app.get('/', (req, res) => {
-	res.render('index.pug', { userAvatar: 'lolTest123' });
-});
 
+// All routes go here
+app.get('/', homepage);
+
+// If unspecified, serve static files
 app.use(express.static('client/build'));
 app.use(express.static('assets'));
-
-// TODO: rewrite each of the routes as separate files and
-// add them all here at the end
 
 export default app;
