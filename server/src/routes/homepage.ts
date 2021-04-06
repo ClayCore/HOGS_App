@@ -1,25 +1,24 @@
 import axios from 'axios';
 import express from 'express';
 
-async function getUserAvatar(steamId: string): Promise<string> {
+function getUserAvatar(steamId: string) {
 	const profileId = `https://steamcommunity.com/profiles/${steamId}`;
 
-	const result = await axios.get(profileId).then((res) => {
-		// HACK: get DOM from the response
-		const doc: HTMLDocument = res.data;
+	return axios
+		.get(profileId)
+		.then((response) => response.data)
+		.then((text) => {
+			// Parse all the incoming HTML
+			// amnd retrieve the userAvatar url
+			const parser = new DOMParser();
+			const document = parser.parseFromString(text, 'text/html');
+			const userAvatar = document.querySelector('.playerAvatar img');
 
-		// Grab the avatar img `src` attribute
-		const userAvatar = doc.querySelector('.playerAvatar img');
-		const userAvatarUrl = userAvatar?.getAttribute('src');
-
-		return userAvatarUrl;
-	});
-
-	return result ?? '';
+			return userAvatar?.getAttribute('src');
+		});
 }
 
-// TODO: Refactor to make it nice.
-async function getAllAvatars(): Promise<string[]> {
+async function getAllAvatars() {
 	const sids = [
 		'76561198115627631', // Claymore
 		'76561198066378373', // Fuel-Black
@@ -30,10 +29,15 @@ async function getAllAvatars(): Promise<string[]> {
 		'76561198316733348', // rechurd
 	];
 
+	// TODO: Refactor to make it nice.
 	const avatarUrls: string[] = [];
 	sids.forEach(async (steamId: string) => {
 		const url = await getUserAvatar(steamId);
-		avatarUrls.push(url);
+		console.log(url);
+
+		if (url) {
+			avatarUrls.push(url);
+		}
 	});
 
 	return avatarUrls;
