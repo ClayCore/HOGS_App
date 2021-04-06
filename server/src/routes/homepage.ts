@@ -8,12 +8,11 @@ function getUserAvatar(steamId: string) {
 	return axios
 		.get(profileId)
 		.then((response) => response.data)
-		.then((text) => {
+		.then((text: string) => {
 			// Parse all the incoming HTML
 			// amnd retrieve the userAvatar url
-			const parser = new DOMParser();
-			const document = parser.parseFromString(text, 'text/html');
-			const userAvatar = document.querySelector('.playerAvatar img');
+			const parser = new jsdom.JSDOM(text);
+			const userAvatar = parser.window.document.querySelector('.playerAvatar img');
 
 			return userAvatar?.getAttribute('src');
 		});
