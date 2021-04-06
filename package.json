@@ -22,6 +22,7 @@
 		"start": "node server/build",
 		"dev": "cross-env NODE_ENV=development concurrently -k \"gulp watch\" \"yarn start\"",
 		"clean": "rimraf server/build client/build",
+		"rebuild:deps": "rimraf node_modules && yarn install",
 		"serve": "yarn start",
 		"heroku-postbuild": "yarn build"
 	},
