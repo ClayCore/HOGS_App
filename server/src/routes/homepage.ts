@@ -2,7 +2,7 @@ import axios from 'axios';
 import express from 'express';
 import jsdom from 'jsdom';
 
-function getUserAvatar(steamId: string) {
+const getUserAvatar = (steamId: string) => {
 	const profileId = `https://steamcommunity.com/profiles/${steamId}`;
 
 	return axios
@@ -16,9 +16,9 @@ function getUserAvatar(steamId: string) {
 
 			return userAvatar?.getAttribute('src');
 		});
-}
+};
 
-function getAllAvatars() {
+const getAllAvatars = async () => {
 	const sids = [
 		'76561198115627631', // Claymore
 		'76561198066378373', // Fuel-Black
@@ -32,19 +32,20 @@ function getAllAvatars() {
 	// TODO: Refactor to make it nice.
 	const avatarUrls: string[] = [];
 	sids.forEach(async (steamId: string) => {
-		await getUserAvatar(steamId).then((data) => {
-			if (data) {
-				avatarUrls.push(data);
+		await getUserAvatar(steamId).then((url) => {
+			if (url) {
+				console.log(url);
+				avatarUrls.push(url);
 			}
 		});
 	});
 
 	return avatarUrls;
-}
+};
 
 const homepage = express.Router();
-homepage.route('/').get((req, res) => {
-	res.render('index.pug', { userAvatars: getAllAvatars() });
+homepage.route('/').get(async (req, res) => {
+	res.render('index.pug', { userAvatars: await getAllAvatars() });
 });
 
 export default homepage;
