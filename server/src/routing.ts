@@ -16,7 +16,7 @@ if (NODE_ENV == 'development') {
 }
 
 // Use the client dir for rendering pug
-app.set('views', 'client/src/');
+app.set('views', 'client/template/');
 
 // All routes go here
 app.get('/', homepage);
