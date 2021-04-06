@@ -33,7 +33,6 @@ async function getAllAvatars() {
 	const avatarUrls: string[] = [];
 	sids.forEach(async (steamId: string) => {
 		const url = await getUserAvatar(steamId);
-		console.log(url);
 
 		if (url) {
 			avatarUrls.push(url);
