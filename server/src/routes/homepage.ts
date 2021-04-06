@@ -18,7 +18,7 @@ function getUserAvatar(steamId: string) {
 		});
 }
 
-async function getAllAvatars() {
+function getAllAvatars() {
 	const sids = [
 		'76561198115627631', // Claymore
 		'76561198066378373', // Fuel-Black
@@ -32,11 +32,11 @@ async function getAllAvatars() {
 	// TODO: Refactor to make it nice.
 	const avatarUrls: string[] = [];
 	sids.forEach(async (steamId: string) => {
-		const url = await getUserAvatar(steamId);
-
-		if (url) {
-			avatarUrls.push(url);
-		}
+		await getUserAvatar(steamId).then((data) => {
+			if (data) {
+				avatarUrls.push(data);
+			}
+		});
 	});
 
 	return avatarUrls;
