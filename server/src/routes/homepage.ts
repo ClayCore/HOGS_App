@@ -3,19 +3,37 @@ import express from 'express';
 import jsdom from 'jsdom';
 
 const getUserAvatar = async (steamId: string) => {
-	const profileId = `https://steamcommunity.com/profiles/${steamId}`;
+	const steamAPIkey = process.env.STEAM_API_KEY;
 
-	return axios
-		.get(profileId)
-		.then((response) => response.data)
-		.then((text: string) => {
-			// Parse all the incoming HTML
-			// and retrieve the userAvatar url
-			const parser = new jsdom.JSDOM(text);
-			const userAvatar = parser.window.document.querySelector('.playerAvatar playerAvatarAutoSizeInner img');
+	if (!steamAPIkey) {
+		console.error('Failed to get Steam API key!');
+		console.log('Falling back to web-scraping.');
 
-			return userAvatar?.getAttribute('src');
-		});
+		const profileUrl = `https://steamcommunity.com/profiles/${steamId}`;
+
+		return axios
+			.get(profileUrl)
+			.then((response) => response.data)
+			.then((text: string) => {
+				// Parse all the incoming HTML
+				// and retrieve the userAvatar url
+				const parser = new jsdom.JSDOM(text);
+				const userAvatar = parser.window.document.querySelector(
+					".playerAvatar .playerAvatarAutoSizeInner img:not('.profile_avatar_frame')"
+				);
+
+				return userAvatar?.getAttribute('src');
+			});
+	} else {
+		console.log('Got Web API key.');
+
+		const profileUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${steamAPIkey}&steamids=${steamId}`;
+
+		return axios
+			.get(profileUrl)
+			.then((response) => response.data)
+			.then((response) => response.avatarfull);
+	}
 };
 
 const homepage = express.Router();
@@ -31,9 +49,9 @@ homepage.route('/').get(async (req, res) => {
 	];
 
 	// Destructure and pull out the useful stuff out.
-	const avatarUrls = await Promise.all(sids.map((x) => x.sid).map((steamid) => getUserAvatar(steamid)));
 	const roles = sids.map((x) => x.role);
 	const names = sids.map((x) => x.name);
+	const avatarUrls = await Promise.all(sids.map((x) => x.sid).map((steamid: string) => getUserAvatar(steamid)));
 
 	// NOTE: this renders slowly since the entire routing is paused while the avatar urls are being fetched
 	// TODO: preload avatars or add a loader?

@@ -7,6 +7,8 @@ mixin staffMember(url, name, role)
 section#contact
 	h1 Contact our staff
 	.row-container
-		div= staffAvatars
+		div
+			each avatar in staffAvatars
+				img(src=avatar)
 		div= staffNames
 		div= staffRoles
