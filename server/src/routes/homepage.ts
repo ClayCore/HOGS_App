@@ -1,8 +1,9 @@
+import express, { response } from 'express';
+
 import axios from 'axios';
-import express from 'express';
 import jsdom from 'jsdom';
 
-const getUserAvatar = (steamId: string) => {
+const getUserAvatar = async (steamId: string) => {
 	const profileId = `https://steamcommunity.com/profiles/${steamId}`;
 
 	return axios
@@ -18,7 +19,8 @@ const getUserAvatar = (steamId: string) => {
 		});
 };
 
-const getAllAvatars = async () => {
+const homepage = express.Router();
+homepage.route('/').get(async (req, res) => {
 	const sids = [
 		'76561198115627631', // Claymore
 		'76561198066378373', // Fuel-Black
@@ -29,23 +31,9 @@ const getAllAvatars = async () => {
 		'76561198316733348', // rechurd
 	];
 
-	// TODO: Refactor to make it nice.
-	const avatarUrls: string[] = [];
-	sids.forEach(async (steamId: string) => {
-		await getUserAvatar(steamId).then((url) => {
-			if (url) {
-				console.log(url);
-				avatarUrls.push(url);
-			}
-		});
-	});
+	const avatarUrls = await Promise.all(sids.map((steamid) => getUserAvatar(steamid)));
 
-	return avatarUrls;
-};
-
-const homepage = express.Router();
-homepage.route('/').get(async (req, res) => {
-	res.render('index.pug', { userAvatars: await getAllAvatars() });
+	res.render('index.pug', { userAvatars: avatarUrls });
 });
 
 export default homepage;
