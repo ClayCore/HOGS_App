@@ -6,8 +6,7 @@ async function getUserAvatar(steamId: string): Promise<string> {
 
 	const result = await axios.get(profileId).then((res) => {
 		// HACK: get DOM from the response
-		const doc = document.createElement('div');
-		doc.innerHTML = res.data;
+		const doc: HTMLDocument = res.data;
 
 		// Grab the avatar img `src` attribute
 		const userAvatar = doc.querySelector('.playerAvatar img');
