@@ -25,26 +25,29 @@ const getUserAvatar = async (steamId: string, apiKey: string | undefined) => {
 			.then((response) => response.avatarfull);
 	} else {
 		// Fallback to web-scraping from the profile page
-		const profileUrl = `https://steamcommunity.com/profiles/${steamId}`;
+		const groupProfile = 'https://steamcommunity.com/groups/HightowerOGs/members';
 
 		return axios
-			.get(profileUrl)
+			.get(groupProfile)
 			.then((response) => response.data)
 			.then((text: string) => {
 				// Parse all the incoming HTML
 				// and retrieve the userAvatar url
 				const parser = new jsdom.JSDOM(text);
 				const dom = parser.window.document;
-				const userProfilePicture = dom.querySelector('.playerAvatar .playerAvatarAutoSizeInner');
+				const userProfilePicture = dom.querySelector(
+					`.member_block[data-miniprofile='${steamId}'] .playerAvatar`
+				);
 
 				const userAvatar = userProfilePicture?.getElementsByTagName('img');
 				if (userAvatar) {
-					// Make sure to not pull the avatar frame out.
-					if (userAvatar[1]) {
-						return userAvatar[1].src;
-					} else {
-						return userAvatar[0].src;
-					}
+					// Strip the jpg extensions to add `_full` and the extension back in
+					// This is to get the full image from the thumbnail
+					const baseUrl = userAvatar[0].src;
+					const separator = baseUrl.lastIndexOf('.');
+					const fullUrl = baseUrl.substring(0, separator) + '_full.jpg';
+
+					return fullUrl;
 				}
 			});
 	}
@@ -52,13 +55,13 @@ const getUserAvatar = async (steamId: string, apiKey: string | undefined) => {
 
 const getAllInfo = async (apiKey: string | undefined) => {
 	const sids = [
-		{ sid: '76561198066378373', name: 'Fuel-Black', role: 'Owner', avatar_url: '' },
-		{ sid: '76561197962534841', name: 'Stfwn', role: 'Administration', avatar_url: '' },
-		{ sid: '76561198115627631', name: 'Claymore', role: 'Developer', avatar_url: '' },
-		{ sid: '76561198869806001', name: 'Junior', role: 'Developer', avatar_url: '' },
-		{ sid: '76561198148565659', name: 'Fl1p', role: 'Moderation', avatar_url: '' },
-		{ sid: '76561198429396241', name: 'Skar', role: 'Moderation', avatar_url: '' },
-		{ sid: '76561198316733348', name: 'Rechurd', role: 'Moderation', avatar_url: '' },
+		{ sid: '106112645', name: 'Fuel-Black', role: 'Owner', avatar_url: '' },
+		{ sid: '2269113', name: 'Stfwn', role: 'Administration', avatar_url: '' },
+		{ sid: '155361903', name: 'Claymore', role: 'Developer', avatar_url: '' },
+		{ sid: '909540273', name: 'Junior', role: 'Developer', avatar_url: '' },
+		{ sid: '188299931', name: 'Fl1p', role: 'Moderation', avatar_url: '' },
+		{ sid: '469130513', name: 'Skar', role: 'Moderation', avatar_url: '' },
+		{ sid: '356467620', name: 'Rechurd', role: 'Moderation', avatar_url: '' },
 	];
 
 	const avatarUrls = await Promise.all(
@@ -80,7 +83,7 @@ homepage.route('/').get(async (req, res) => {
 
 	// NOTE: this renders slowly since the entire routing is paused while the avatar urls are being fetched
 	// TODO: preload avatars or add a loader?
-	res.render('index.pug', { staffInfo: getAllInfo(apiKey) });
+	res.render('index.pug', { staffInfo: await getAllInfo(apiKey) });
 });
 
 export default homepage;

@@ -58,12 +58,14 @@ header#topbar {
 	);
 	border-image-slice: 1;
 
-	font-family: 'Roboto Slab';
+	font-family: 'Roboto';
 	font-weight: 400;
 	letter-spacing: 0.1vh;
 
 	background-color: $main-bg;
 	color: $main-fg;
+
+	box-shadow: 0px 5px 10px 0px $shadow-color;
 
 	transition: all 0.2s linear;
 
@@ -117,7 +119,7 @@ header#topbar {
 			justify-content: center;
 
 			text-decoration: none;
-			margin-left: 0.5rem;
+			margin-left: 1rem;
 
 			font-weight: 400;
 			text-shadow: 1px 1px 2px $shadow-color;
@@ -185,7 +187,7 @@ div#page {
 		background: $main-bg;
 		color: $main-fg;
 
-		font-family: 'Roboto Slab';
+		font-family: 'Roboto';
 		font-size: 1rem;
 		font-weight: 400;
 		letter-spacing: 0.1rem;

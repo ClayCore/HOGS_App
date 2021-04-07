@@ -109,6 +109,8 @@ div#page {
 
 			text-shadow: 2px 2px 2px $shadow-color;
 
+			box-shadow: inset 0px 0px 10px 0px $shadow-color;
+
 			h1 {
 				@extend %center-container;
 
