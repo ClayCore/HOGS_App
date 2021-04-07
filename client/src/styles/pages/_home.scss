@@ -8,16 +8,12 @@ section#top::before {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 150%;
+	height: 100%;
 
 	mix-blend-mode: normal;
 
-	background-image: url('/graphics/intro.jpg');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position-y: 4rem;
+	background: transparent;
 }
-
 section#top {
 	@extend %center-container;
 
@@ -94,6 +90,8 @@ div#page {
 
 		flex-direction: column;
 
+		background: transparent;
+
 		position: relative;
 
 		height: auto;
@@ -110,14 +108,6 @@ div#page {
 			color: $main-fg;
 
 			text-shadow: 2px 2px 2px $shadow-color;
-		}
-
-		section#about {
-			flex-direction: column;
-
-			justify-content: flex-start;
-
-			height: 20rem;
 
 			h1 {
 				@extend %center-container;
@@ -141,6 +131,36 @@ div#page {
 				border-image-slice: 1;
 				border-image-width: 2.5rem;
 			}
+
+			h2 {
+				@extend %center-container;
+
+				width: 100%;
+				height: 2rem;
+
+				font-size: 1.2rem;
+				font-weight: 400;
+
+				letter-spacing: 0.1rem;
+
+				border-bottom-width: 0.2rem;
+				border-bottom-style: solid;
+				border-image-source: linear-gradient(
+					90deg,
+					rgba(255, 255, 255, 0) 0%,
+					rgba($accent, 0.5) 50%,
+					rgba(0, 212, 255, 0) 100%
+				);
+				border-image-slice: 1;
+			}
+		}
+
+		section#about {
+			flex-direction: column;
+
+			justify-content: flex-start;
+
+			height: 20rem;
 
 			.col-container {
 				@extend %center-container;
@@ -262,51 +282,6 @@ div#page {
 
 			height: 20rem;
 
-			h1 {
-				@extend %center-container;
-
-				width: 100%;
-				height: 2rem;
-
-				font-size: 1.5rem;
-				font-weight: 400;
-
-				letter-spacing: 0.1rem;
-
-				border-bottom-width: 0.2rem;
-				border-bottom-style: solid;
-				border-image-source: linear-gradient(
-					90deg,
-					rgba(255, 255, 255, 0) 0%,
-					rgba($accent, 1) 50%,
-					rgba(0, 212, 255, 0) 100%
-				);
-				border-image-slice: 1;
-				border-image-width: 2.5rem;
-			}
-
-			h2 {
-				@extend %center-container;
-
-				width: 100%;
-				height: 2rem;
-
-				font-size: 1.2rem;
-				font-weight: 400;
-
-				letter-spacing: 0.1rem;
-
-				border-bottom-width: 0.2rem;
-				border-bottom-style: solid;
-				border-image-source: linear-gradient(
-					90deg,
-					rgba(255, 255, 255, 0) 0%,
-					rgba($accent, 0.5) 50%,
-					rgba(0, 212, 255, 0) 100%
-				);
-				border-image-slice: 1;
-			}
-
 			.tile {
 				a {
 					@extend %center-container;
@@ -339,6 +314,75 @@ div#page {
 						border-color: $accent;
 
 						color: $accent;
+					}
+				}
+			}
+		}
+
+		section#contact {
+			flex-direction: column;
+
+			justify-content: flex-start;
+
+			height: 16rem;
+
+			.tile-container {
+				@extend %center-container;
+
+				flex-direction: row;
+
+				padding-left: 5rem;
+				padding-right: 5rem;
+
+				width: 100%;
+				height: calc(100% - 2rem);
+
+				.tile {
+					@extend %center-container;
+
+					margin-right: 1.2rem;
+
+					flex-direction: column;
+					height: 100%;
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					img {
+						width: 5rem;
+						height: auto;
+
+						border: 0.2rem solid $accent;
+						border-radius: 50%;
+
+						margin-bottom: 0.5rem;
+					}
+
+					h1 {
+						@extend %center-container;
+
+						width: 100%;
+						height: 2rem;
+
+						font-size: 1.3rem;
+						font-weight: 600;
+
+						border: 0;
+					}
+
+					h2 {
+						@extend %center-container;
+
+						width: 100%;
+						height: 1.5rem;
+
+						font-size: 1rem;
+						font-weight: 300;
+
+						letter-spacing: normal;
+
+						border: 0;
 					}
 				}
 			}

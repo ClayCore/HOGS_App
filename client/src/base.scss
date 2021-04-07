@@ -17,7 +17,7 @@ html {
 }
 
 body {
-	height: 2080px;
+	height: auto;
 }
 
 // Links are going to be white by default
@@ -163,30 +163,26 @@ div#page {
 	flex-direction: column;
 
 	position: relative;
-	top: 4rem;
 
 	width: 100%;
-	height: auto;
+	height: 100%;
 
-	background-color: transparent;
+	background-image: url('/graphics/intro.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position-y: 4rem;
 
 	color: $secondary-fg;
 
 	footer {
-		$max-width: 20rem;
-
 		@extend %center-container;
 
-		position: relative;
-		bottom: 0;
+		$max-width: 20rem;
 
-		width: 60%;
-		height: 6rem;
+		width: 75%;
+		height: 8rem;
 
-		// padding-left: $max-width;
-		// padding-right: $max-width;
-
-		background-color: $main-bg;
+		background: $main-bg;
 		color: $main-fg;
 
 		font-family: 'Roboto Slab';
@@ -195,6 +191,7 @@ div#page {
 		letter-spacing: 0.1rem;
 
 		text-shadow: 2px 2px 3px $shadow-color;
+		box-shadow: 0px 4px 10px 0px $shadow-color;
 
 		section.column {
 			@extend %center-container;
@@ -218,12 +215,10 @@ div#page {
 				}
 
 				transition: all 0.2s linear;
-			}
 
-			a.tile:hover {
-				color: $accent;
-
-				transform: scale(1.1);
+				&:hover {
+					color: $accent;
+				}
 			}
 		}
 	}
