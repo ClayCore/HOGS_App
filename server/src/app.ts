@@ -1,10 +1,12 @@
+import * as routes from './routes/';
+
 import express from 'express';
-import homepage from './routes/homepage';
 import livereload from 'connect-livereload';
 
-const app = express();
-
 const NODE_ENV = process.env.NODE_ENV;
+const PORT = process.env.port || 3000;
+
+const app = express();
 
 console.log('NODE_ENV: ' + NODE_ENV);
 
@@ -15,11 +17,15 @@ if (NODE_ENV == 'development') {
 	console.log('Assuming production environment.');
 }
 
+// Set config vars
+app.set('port', PORT);
+app.set('mod', NODE_ENV);
+
 // Use the client dir for rendering pug
 app.set('views', 'client/template/');
 
 // All routes go here
-app.get('/', homepage);
+app.get('/', routes.homepage);
 
 // If unspecified, serve static files
 app.use(express.static('client/build'));

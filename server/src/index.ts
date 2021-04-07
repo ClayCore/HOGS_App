@@ -1,7 +1,5 @@
-import app from './routing';
+import app from './app';
 
-const port = process.env.port || 3000;
-
-app.listen(port, () => {
-	console.log(`Server is listening at [http://localhost:${port}]`);
+app.listen(app.get('port'), () => {
+	console.log(`Server is listening at [http://localhost:${app.get('port')}] in mod (${app.get('mod')})`);
 });
