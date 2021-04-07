@@ -50,10 +50,7 @@ const getUserAvatar = async (steamId: string, apiKey: string | undefined) => {
 	}
 };
 
-const homepage = express.Router();
-homepage.route('/').get(async (req, res) => {
-	const apiKey = getApiKey();
-
+const getAllInfo = async (apiKey: string | undefined) => {
 	const sids = [
 		{ sid: '76561198066378373', name: 'Fuel-Black', role: 'Owner', avatar_url: '' },
 		{ sid: '76561197962534841', name: 'Stfwn', role: 'Administration', avatar_url: '' },
@@ -74,9 +71,16 @@ homepage.route('/').get(async (req, res) => {
 		sids[i].avatar_url = avatarUrls[i];
 	}
 
+	return sids;
+};
+
+const homepage = express.Router();
+homepage.route('/').get(async (req, res) => {
+	const apiKey = getApiKey();
+
 	// NOTE: this renders slowly since the entire routing is paused while the avatar urls are being fetched
 	// TODO: preload avatars or add a loader?
-	res.render('index.pug', { staffInfo: sids });
+	res.render('index.pug', { staffInfo: getAllInfo(apiKey) });
 });
 
 export default homepage;
