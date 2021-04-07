@@ -78,13 +78,13 @@ section#top {
 		text-shadow: 2px 2px 2px $hard-shadow;
 
 		transition: all 0.2s linear;
-	}
 
-	a:hover {
-		transform: scale(1.1);
-		border-color: $accent;
+		&:hover {
+			transform: scale(1.1);
+			border-color: $accent;
 
-		color: $accent;
+			color: $accent;
+		}
 	}
 }
 
@@ -242,13 +242,13 @@ div#page {
 
 								padding: 2rem;
 							}
-						}
 
-						a:hover {
-							transform: scale(1.1);
-							border-color: $accent;
+							&:hover {
+								transform: scale(1.1);
+								border-color: $accent;
 
-							color: $accent;
+								color: $accent;
+							}
 						}
 					}
 				}
@@ -333,13 +333,13 @@ div#page {
 
 						padding: 2rem;
 					}
-				}
 
-				a:hover {
-					transform: scale(1.1);
-					border-color: $accent;
+					&:hover {
+						transform: scale(1.1);
+						border-color: $accent;
 
-					color: $accent;
+						color: $accent;
+					}
 				}
 			}
 		}
