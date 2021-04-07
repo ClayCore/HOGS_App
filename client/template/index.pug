@@ -1,14 +1,14 @@
 extends _base.pug
 
 block content
-	section#top.rellax(data-rellax-speed='-4', data-rellax-percentage='0.5')
+	section#top
 		//- Quick info about the server.
 		h1 Hightower OGs
 		h2 TDM insta-respawn with no bullshit
 		//- img(src="/graphics/logo-outline.svg")
 		a(href='steam://connect/89.34.96.159:27015/')
 			span Join now!
-	main.rellax(data-rellax-speed='7', data-rellax-percentage='0.3')
+	main
 		//- Rules, links to discord and steam group, short info about the server
 		include views/sections/_about.pug
 

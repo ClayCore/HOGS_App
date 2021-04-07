@@ -2,13 +2,29 @@ import axios from 'axios';
 import express from 'express';
 import jsdom from 'jsdom';
 
-const getUserAvatar = async (steamId: string) => {
+const getApiKey = () => {
 	const steamAPIkey = process.env.STEAM_API_KEY;
 
-	if (!steamAPIkey) {
+	if (steamAPIkey) {
+		console.log('Got Web API key.');
+	} else {
 		console.error('Failed to get Steam API key!');
-		console.log('Falling back to web-scraping.');
+	}
 
+	return steamAPIkey ? steamAPIkey : undefined;
+};
+
+const getUserAvatar = async (steamId: string, apiKey: string | undefined) => {
+	if (apiKey) {
+		// Use api key to fetch the avatar directly
+		const profileUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`;
+
+		return axios
+			.get(profileUrl)
+			.then((response) => response.data)
+			.then((response) => response.avatarfull);
+	} else {
+		// Fallback to web-scraping from the profile page
 		const profileUrl = `https://steamcommunity.com/profiles/${steamId}`;
 
 		return axios
@@ -18,26 +34,26 @@ const getUserAvatar = async (steamId: string) => {
 				// Parse all the incoming HTML
 				// and retrieve the userAvatar url
 				const parser = new jsdom.JSDOM(text);
-				const userAvatar = parser.window.document.querySelector(
-					".playerAvatar .playerAvatarAutoSizeInner img:not('.profile_avatar_frame')"
-				);
+				const dom = parser.window.document;
+				const userProfilePicture = dom.querySelector('.playerAvatar .playerAvatarAutoSizeInner');
 
-				return userAvatar?.getAttribute('src');
+				const userAvatar = userProfilePicture?.getElementsByTagName('img');
+				if (userAvatar) {
+					// Make sure to not pull the avatar frame out.
+					if (userAvatar[1]) {
+						return userAvatar[1].src;
+					} else {
+						return userAvatar[0].src;
+					}
+				}
 			});
-	} else {
-		console.log('Got Web API key.');
-
-		const profileUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${steamAPIkey}&steamids=${steamId}`;
-
-		return axios
-			.get(profileUrl)
-			.then((response) => response.data)
-			.then((response) => response.avatarfull);
 	}
 };
 
 const homepage = express.Router();
 homepage.route('/').get(async (req, res) => {
+	const apiKey = getApiKey();
+
 	const sids = [
 		{ sid: '76561198066378373', name: 'Fuel-Black', role: 'Owner' },
 		{ sid: '76561197962534841', name: 'Stfwn', role: 'Administration' },
@@ -51,7 +67,9 @@ homepage.route('/').get(async (req, res) => {
 	// Destructure and pull out the useful stuff out.
 	const roles = sids.map((x) => x.role);
 	const names = sids.map((x) => x.name);
-	const avatarUrls = await Promise.all(sids.map((x) => x.sid).map((steamid: string) => getUserAvatar(steamid)));
+	const avatarUrls = await Promise.all(
+		sids.map((x) => x.sid).map((steamid: string) => getUserAvatar(steamid, apiKey))
+	);
 
 	// NOTE: this renders slowly since the entire routing is paused while the avatar urls are being fetched
 	// TODO: preload avatars or add a loader?
