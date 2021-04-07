@@ -1,12 +1,5 @@
 extends _base.pug
 
-block head
-	//- Rellax parallax
-	script(src='/vendor/js/rellax.min.js')
-
-	script.
-		var rellax = new Rellax(".rellax");
-	
 block content
 	section#top.rellax(data-rellax-speed='-4', data-rellax-percentage='0.5')
 		//- Quick info about the server.
@@ -20,7 +13,7 @@ block content
 		include views/sections/_about.pug
 
 		//- Where to give feedback on the server (aka. redirect to steam group or to the built-in issue tracker)
-		include views/sections/_feedback.pug
+		//- include views/sections/_feedback.pug
 
 		//- Link to profiles of all staff members
 		include views/sections/_contact.pug
