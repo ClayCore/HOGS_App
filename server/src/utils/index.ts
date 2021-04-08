@@ -37,16 +37,25 @@ const scrapeMembers = (rawResponse: string) => {
 			const sidRaw = $('.linkFriend', member).attr('href');
 			const avatarUrl = $('.playerAvatar img', member).attr('src');
 
-			console.log(`Fetched user: ${nick} : ${sidRaw} : ${avatarUrl}`);
+			console.log(`Fetched:\n\tNick: [${nick}]\t SteamID: [${sidRaw}]\t AvatarUrl: ${avatarUrl}`);
 
 			// Convert steamid
 			if (sidRaw) {
-				const sid = new SteamID(sidRaw).getSteam3RenderedID();
-
-				console.log(`Processed SteamID: ${sid}`);
+				const sid = sidRaw.split('/')?.pop() || '';
+				const isNumerical = sid.match(/^[0-9]+$/) != null;
 
 				if (nick && avatarUrl) {
-					return { nick: nick, steamid: sid, avatarUrl: avatarUrl } as User;
+					if (sid !== '' || !isNumerical) {
+						console.error('Vanity steamID present. Do not process');
+
+						return { nick: nick, steamid: sid, avatarUrl: avatarUrl } as User;
+					} else {
+						const processedSid = new SteamID(sid).getSteam3RenderedID();
+
+						console.log(`Processed SteamID: ${processedSid}`);
+
+						return { nick: nick, steamid: processedSid, avatarUrl: avatarUrl } as User;
+					}
 				}
 			}
 		});
