@@ -119,7 +119,6 @@ div#page {
 
 				font-size: 1.5rem;
 				font-weight: 400;
-
 				letter-spacing: 0.1rem;
 
 				border-bottom-width: 0.2rem;
@@ -132,6 +131,8 @@ div#page {
 				);
 				border-image-slice: 1;
 				border-image-width: 2.5rem;
+
+				text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
 			}
 
 			h2 {
@@ -155,14 +156,6 @@ div#page {
 				);
 				border-image-slice: 1;
 			}
-		}
-
-		section#about {
-			flex-direction: column;
-
-			justify-content: flex-start;
-
-			height: 20rem;
 
 			.col-container {
 				@extend %center-container;
@@ -277,47 +270,30 @@ div#page {
 			}
 		}
 
-		section#feedback {
+		section#about {
 			flex-direction: column;
 
 			justify-content: flex-start;
 
 			height: 20rem;
+		}
 
-			.tile {
-				a {
-					@extend %center-container;
+		section#feedback {
+			flex-direction: column;
 
-					display: flex;
-					flex-direction: column;
+			justify-content: flex-start;
 
-					width: 100%;
-					height: 50%;
+			height: auto;
 
-					padding: 1rem;
+			div.icon {
+				@extend %center-container;
 
-					color: $main-fg;
+				width: 4rem;
+				height: 4rem;
 
-					transition: all 0.2s linear;
+				font-size: 3.5rem;
 
-					.icon {
-						@extend %center-container;
-
-						width: 3rem;
-						height: 3rem;
-
-						font-size: 2.75rem;
-
-						padding: 2rem;
-					}
-
-					&:hover {
-						transform: scale(1.1);
-						border-color: $accent;
-
-						color: $accent;
-					}
-				}
+				padding: 1rem;
 			}
 		}
 

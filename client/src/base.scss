@@ -30,6 +30,8 @@ a {
 * {
 	scrollbar-color: $accent $main-bg;
 	scrollbar-width: thin;
+
+	user-select: none;
 }
 
 header#topbar {
