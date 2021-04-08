@@ -1,8 +1,9 @@
 import SteamID from 'steamid';
 
 export default interface User {
-	steamid: SteamID | string;
 	nick: string;
+	steamid?: SteamID;
+	sidStr?: string;
 	role?: string; // used for staff members
 	avatarUrl?: string;
 }

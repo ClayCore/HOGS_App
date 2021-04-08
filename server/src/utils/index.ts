@@ -34,19 +34,19 @@ const scrapeMembers = (rawResponse: string) => {
 		.map((member) => {
 			// scrap all the necessary information
 			const nick = $('.linkFriend', member).text();
-			const steamid = $('.linkFriend', member).attr('href');
+			const sidRaw = $('.linkFriend', member).attr('href');
 			const avatarUrl = $('.playerAvatar img', member).attr('src');
 
-			console.log(`Fetched user: ${nick} : ${steamid} : ${avatarUrl}`);
+			console.log(`Fetched user: ${nick} : ${sidRaw} : ${avatarUrl}`);
 
 			// Convert steamid
-			if (steamid) {
-				const sid = new SteamID(steamid);
+			if (sidRaw) {
+				const sid = new SteamID(sidRaw);
 
 				console.log(`Processed SteamID: ${sid}`);
 
 				if (nick && avatarUrl) {
-					return { nick: nick, steamid: sid, avatarUrl: avatarUrl } as User;
+					return { nick: nick, steamid: sid, sidStr: sidRaw, avatarUrl: avatarUrl } as User;
 				}
 			}
 		});
@@ -63,7 +63,11 @@ export default async function processMembers(memberList?: Array<User>) {
 		// Filter only members defined in the list
 		members = members.filter((member) => {
 			memberList.filter((staff) => {
-				staff.nick === member?.nick;
+				if (staff.sidStr) {
+					const processedSid = new SteamID(staff.sidStr);
+
+					return processedSid === member?.steamid;
+				}
 			});
 		});
 
