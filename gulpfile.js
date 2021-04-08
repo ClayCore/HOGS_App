@@ -53,11 +53,18 @@ tasks.pug = () => (
 	.pipe(livereload())
 );
 
+tasks.reload = () => (
+	gulp.src('client/template/**/!(_)*.pug')
+	.pipe(plumber())
+	.pipe(livereload())
+);
+
 tasks.watch = () => {
 	livereload.listen();
 	gulp.watch('client/src/**/*.(scss|sass)', tasks.sass);
 	gulp.watch('client/src/**/*.ts', tasks.ts);
 	gulp.watch('client/src/**/*.pug', tasks.pug);
+	gulp.watch('client/template/**/*.pug', tasks.reload);
 };
 
 tasks.build = gulp.parallel(tasks.ts, tasks.sass, tasks.pug);
