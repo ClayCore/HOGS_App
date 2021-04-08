@@ -10,9 +10,7 @@ const livereload = require('gulp-livereload');
 const tsServer = ts.createProject('server/tsconfig.json');
 const tsClient = ts.createProject('client/tsconfig.json');
 
-const tasks = {};
-
-tasks.server = () => (
+const server = () => (
 	tsServer.src()
 	.pipe(plumber())
 	.pipe(tsServer())
@@ -21,7 +19,7 @@ tasks.server = () => (
 	.pipe(livereload())
 );
 
-tasks.ts = () => (
+const scripts = () => (
 	tsClient.src()
 	.pipe(plumber())
 	.pipe(tsClient())
@@ -30,7 +28,7 @@ tasks.ts = () => (
 	.pipe(livereload())
 );
 
-tasks.sass = () => (
+const styles = () => (
 	// Exclude files starting with an underscore.
 	gulp.src([
 		'client/src/**/!(_)*.scss',
@@ -44,7 +42,7 @@ tasks.sass = () => (
 	.pipe(livereload())
 );
 
-tasks.pug = () => (
+const pages = () => (
 	// Exclude files starting with an underscore.
 	gulp.src('client/src/**/!(_)*.pug')
 	.pipe(plumber())
@@ -53,20 +51,28 @@ tasks.pug = () => (
 	.pipe(livereload())
 );
 
-tasks.reload = () => (
+const template = () => (
 	gulp.src('client/template/**/!(_)*.pug')
 	.pipe(plumber())
 	.pipe(livereload())
 );
 
-tasks.watch = () => {
+const watch = () => {
 	livereload.listen();
-	gulp.watch('client/src/**/*.(scss|sass)', tasks.sass);
-	gulp.watch('client/src/**/*.ts', tasks.ts);
-	gulp.watch('client/src/**/*.pug', tasks.pug);
-	gulp.watch('client/template/**/*.pug', tasks.reload);
+	gulp.watch('client/src/**/*.(scss|sass)', styles);
+	gulp.watch('client/src/**/*.ts', scripts);
+	gulp.watch('client/src/**/*.pug', pages);
+	gulp.watch('client/template/**/*.pug', template);
 };
 
-tasks.build = gulp.parallel(tasks.ts, tasks.sass, tasks.pug);
+const build = gulp.parallel(scripts, styles, pages);
 
-module.exports = tasks;
+module.exports = {
+	server: server,
+	scripts: scripts,
+	styles: styles,
+	pages: pages,
+	template: template,
+	build: build,
+	watch: watch,
+};
