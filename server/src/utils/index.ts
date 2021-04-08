@@ -41,12 +41,12 @@ const scrapeMembers = (rawResponse: string) => {
 
 			// Convert steamid
 			if (sidRaw) {
-				const sid = new SteamID(sidRaw);
+				const sid = new SteamID(sidRaw).getSteam3RenderedID();
 
 				console.log(`Processed SteamID: ${sid}`);
 
 				if (nick && avatarUrl) {
-					return { nick: nick, steamid: sid, sidStr: sidRaw, avatarUrl: avatarUrl } as User;
+					return { nick: nick, steamid: sid, avatarUrl: avatarUrl } as User;
 				}
 			}
 		});
@@ -63,11 +63,7 @@ export default async function processMembers(memberList?: Array<User>) {
 		// Filter only members defined in the list
 		members = members.filter((member) => {
 			memberList.filter((staff) => {
-				if (staff.sidStr) {
-					const processedSid = new SteamID(staff.sidStr);
-
-					return processedSid === member?.steamid;
-				}
+				staff.steamid === member?.steamid;
 			});
 		});
 
