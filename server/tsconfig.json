@@ -11,7 +11,11 @@
 		"target": "es6",
 		"lib": ["DOM.Iterable", "DOM"],
 		"typeRoots": ["node_modules/@types"],
-		"module": "commonjs"
+		"module": "commonjs",
+		"paths": {
+			"~/*": ["src/*"],
+			"@typings/*": ["../typings/*"]
+		}
 	},
 	"include": ["src/**/*", "typings/**/*"]
 }
