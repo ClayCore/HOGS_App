@@ -9,8 +9,9 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "es6",
+		"lib": ["DOM.Iterable", "DOM"],
 		"typeRoots": ["node_modules/@types"],
-		"module": "commonjs",
+		"module": "commonjs"
 	},
-	"include": ["src/**/*", "typings/**/*"],
+	"include": ["src/**/*", "typings/**/*"]
 }
