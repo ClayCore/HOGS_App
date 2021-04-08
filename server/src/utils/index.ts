@@ -37,22 +37,18 @@ const scrapeMembers = (rawResponse: string) => {
 			const sidRaw = $('.linkFriend', member).attr('href');
 			const avatarUrl = $('.playerAvatar img', member).attr('src');
 
-			console.log(`Fetched:\n\tNick: [${nick}]\t SteamID: [${sidRaw}]\t AvatarUrl: ${avatarUrl}`);
-
 			// Convert steamid
 			if (sidRaw) {
 				const sid = sidRaw.split('/')?.pop() || '';
-				const isNumerical = sid.match(/^[0-9]+$/) != null;
 
 				if (nick && avatarUrl) {
-					if (sid !== '' || !isNumerical) {
-						console.error('Vanity steamID present. Do not process');
-
+					// Make sure the sid is neither empty nor numerical.
+					// If thats the case we know we pulled out a custom/vanity id
+					// and the library will not allow us to process it as SteamID3
+					if (sid !== '' && !sid.match(/^[0-9]+$/)) {
 						return { nick: nick, steamid: sid, avatarUrl: avatarUrl } as User;
 					} else {
 						const processedSid = new SteamID(sid).getSteam3RenderedID();
-
-						console.log(`Processed SteamID: ${processedSid}`);
 
 						return { nick: nick, steamid: processedSid, avatarUrl: avatarUrl } as User;
 					}
@@ -66,25 +62,29 @@ const scrapeMembers = (rawResponse: string) => {
 export default async function processMembers(memberList?: Array<User>) {
 	const apiKey = getApiKey();
 
-	let members = await queryMembers(apiKey).then((members) => scrapeMembers(members));
+	const members = await queryMembers(apiKey)
+		.then((members) => scrapeMembers(members))
+		.then((members) => {
+			let processedList = members;
+			if (memberList) {
+				processedList = members.filter((member) => {
+					memberList.filter((staff) => {
+						staff.steamid === member?.steamid;
+					});
+				});
 
-	if (memberList) {
-		// Filter only members defined in the list
-		members = members.filter((member) => {
-			memberList.filter((staff) => {
-				staff.steamid === member?.steamid;
-			});
-		});
+				processedList.map((member) => {
+					memberList.map((staff) => {
+						if (member) {
+							member.avatarUrl = staff.avatarUrl;
+						}
+					});
+				});
+			}
 
-		// Add all the necessary avatar urls
-		members.map((member) => {
-			memberList.map((staff) => {
-				if (member) {
-					member.avatarUrl = staff.avatarUrl;
-				}
-			});
+			console.log(processedList);
+			return processedList;
 		});
-	}
 
 	return members;
 }
