@@ -26,6 +26,7 @@ app.set('views', 'client/template/');
 
 // All routes go here
 app.get('/', routes.homepage);
+app.get('/stats', routes.stats);
 
 // If unspecified, serve static files
 app.use(express.static('client/build'));
