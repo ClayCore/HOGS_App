@@ -1,3 +1,4 @@
 import homepage from './homepage';
+import stats from './stats';
 
-export { homepage };
+export { homepage, stats };
