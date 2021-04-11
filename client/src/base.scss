@@ -32,7 +32,7 @@ a {
 	scrollbar-color: $accent $main-bg;
 	scrollbar-width: thin;
 
-	user-select: none;
+	// user-select: none;
 }
 
 header#topbar {
@@ -108,7 +108,7 @@ header#topbar {
 
 		flex-direction: row;
 
-		width: calc(100% / 3 + 5rem);
+		width: calc(100% / 3 + 8rem);
 
 		font-size: 1rem;
 

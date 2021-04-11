@@ -275,7 +275,127 @@ div#page {
 
 			justify-content: flex-start;
 
-			height: 20rem;
+			height: auto;
+
+			.container {
+				@extend %center-container;
+
+				display: flex;
+
+				flex-direction: column;
+
+				padding-left: 2rem;
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				padding-right: 2rem;
+
+				width: 100%;
+				height: calc(100% - 2rem);
+
+				// letter-spacing: 0.1rem;
+				// word-spacing: 0.1rem;
+				// line-height: 1.2rem;
+
+				font-weight: 300;
+
+				p {
+					display: block;
+
+					padding: 0.4rem;
+
+					width: 100%;
+					height: 100%;
+				}
+
+				a {
+					display: inline-flex;
+
+					color: $main-fg;
+
+					text-decoration: underline;
+					font-weight: 400;
+				}
+			}
+		}
+
+		section#features {
+			flex-direction: column;
+
+			justify-content: flex-start;
+
+			height: 36rem;
+
+			.tile-container {
+				@extend %center-container;
+
+				align-items: center;
+				justify-content: center;
+				flex-flow: row wrap;
+
+				width: 100%;
+				height: calc(100% - 2rem);
+
+				.tile {
+					@extend %center-container;
+
+					flex-flow: column nowrap;
+
+					margin: 0;
+					padding: 0;
+
+					width: 30%;
+					height: 50%;
+
+					header {
+						@extend %center-container;
+
+						align-items: flex-start;
+
+						width: 100%;
+						height: auto;
+
+						padding: 0.5rem;
+
+						font-size: 1.2rem;
+						text-transform: uppercase;
+					}
+
+					div {
+						@extend %center-container;
+
+						align-items: flex-start;
+
+						width: 100%;
+						height: auto;
+
+						text-align: center;
+
+						padding-left: 1rem;
+						padding-right: 1rem;
+
+						line-height: 1.3rem;
+						font-weight: 300;
+					}
+
+					.img-container {
+						@extend %center-container;
+
+						height: 50%;
+						width: 100%;
+					}
+
+					img {
+						height: 80%;
+						width: auto;
+						background-color: $main-fg;
+
+						border: 0.2rem solid $accent;
+						border-radius: 1rem;
+
+						box-shadow: 2px 2px 5px 0px $shadow-color;
+					}
+				}
+			}
 		}
 
 		section#feedback {
