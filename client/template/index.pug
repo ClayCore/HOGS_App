@@ -10,10 +10,13 @@ block content
 			span Join now!
 	main
 		//- Rules, links to discord and steam group, short info about the server
-		include views/sections/_about.pug
+		include partials/_about.pug
+
+		//- Server features
+		include partials/_features.pug
 
 		//- Where to give feedback on the server (aka. redirect to steam group or to the built-in issue tracker)
-		include views/sections/_feedback.pug
+		include partials/_feedback.pug
 
 		//- Link to profiles of all staff members
-		include views/sections/_contact.pug
+		include partials/_contact.pug
