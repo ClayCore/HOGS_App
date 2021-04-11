@@ -7,6 +7,7 @@
 
 // Add all substylesheets
 @use 'styles/pages/home';
+@use 'styles/pages/stats';
 
 // All elements prior to the `main display` are basically containers
 div#wrapper,
