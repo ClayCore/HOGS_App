@@ -1,7 +1,7 @@
 import express from 'express';
 
 const stats = express.Router();
-stats.route('/').get((req, res) => {
+stats.route('/stats').get((req, res) => {
 	res.render('stats/index.pug');
 });
 
