@@ -10,11 +10,11 @@ export const TF_GAMESERVER = {
 };
 
 export const STAFF_MEMBERS: Array<User> = [
-	{ steamid: '[U:1:106112645]', nick: 'Fuel-Black', role: 'Owner' },
-	{ steamid: '[U:1:2269113]', nick: 'Stfwn', role: 'Administration' },
-	{ steamid: '[U:1:155361903]', nick: 'Claymore', role: 'Developer' },
-	{ steamid: '[U:1:909540273]', nick: 'Junior', role: 'Developer' },
-	{ steamid: '[U:1:188299931]', nick: 'Fl1p', role: 'Moderation' },
-	{ steamid: '[U:1:469130513]', nick: 'Skar', role: 'Moderation' },
-	{ steamid: '[U:1:356467620]', nick: 'Rechurd', role: 'Moderation' },
+	{ steamid: '76561198066378373', nick: 'Fuel-Black', role: 'Owner' },
+	{ steamid: '76561197962534841', nick: 'Stfwn', role: 'Administration' },
+	{ steamid: '76561198115627631', nick: 'Claymore', role: 'Developer' },
+	{ steamid: '76561198869806001', nick: 'junior', role: 'Developer' },
+	{ steamid: '76561198148565659', nick: 'Fl1p', role: 'Moderation' },
+	{ steamid: '76561198429396241', nick: 'Skar', role: 'Moderation' },
+	{ steamid: '76561198316733348', nick: 'Rechurd', role: 'Moderation' },
 ];

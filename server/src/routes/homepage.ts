@@ -1,12 +1,13 @@
 import { STAFF_MEMBERS } from '../utils/constants';
 import express from 'express';
-import processMembers from '../utils';
+import fetchStaff from '../utils';
 
 const homepage = express.Router();
 homepage.route('/').get(async (req, res) => {
 	// NOTE: this renders slowly since the entire routing is paused while the avatar urls are being fetched
 	// TODO: preload avatars or add a loader?
-	res.render('index.pug', { staffInfo: await processMembers(STAFF_MEMBERS) });
+	const staffInfo =await fetchStaff(STAFF_MEMBERS);
+	res.render('index.pug', { staffInfo: staffInfo});
 });
 
 export default homepage;
