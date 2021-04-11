@@ -1,7 +1,16 @@
 mixin feature(image, title, desc)
 	.tile
-		img(src=image)
-		title
-		desc
+		.img-container
+			img(src=image)
+		header= title
+		div= desc
 
 section#features
+	h1 Features
+	.tile-container
+		+feature('/graphics/features/nolag.png', 'No server-side issues', "Proper maintenance ensures that the server is always running at its best")
+		+feature('/graphics/features/nobugs.png', 'No bugs', ' Impactful map glitches, as well as weapons/mechanics related bugs have been fixed.')
+		+feature('/graphics/features/nortd.png', 'No plugins', 'No plugins like !rtd, !tp or !fov that can create an unfair advantage')
+		+feature('/graphics/features/nobots.png', 'No cheaters', ' A group of experienced admins and moderators will make sure no cheaters gets past')
+		+feature('/graphics/features/nocrits.png', 'No randomness', 'Random crits, random bullet spread and everything random is taken out of the equation')
+		+feature('/graphics/features/nosentries.png', 'No sentries', "Engineers are prevented from placing sentries/mini sentries")
