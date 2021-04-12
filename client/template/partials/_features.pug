@@ -1,4 +1,4 @@
-mixin feature(image, title, desc)
+mixin featureTile(image, title, desc)
 	.tile
 		.img-container
 			img(src=image)
@@ -8,9 +8,7 @@ mixin feature(image, title, desc)
 section#features
 	h1 Features
 	.tile-container
-		+feature('/graphics/features/nolag.png', 'No server-side issues', "Proper maintenance ensures that the server is always running at its best")
-		+feature('/graphics/features/nobugs.png', 'No bugs', ' Impactful map glitches, as well as weapons/mechanics related bugs have been fixed.')
-		+feature('/graphics/features/nortd.png', 'No plugins', 'No plugins like !rtd, !tp or !fov that can create an unfair advantage')
-		+feature('/graphics/features/nobots.png', 'No cheaters', ' A group of experienced admins and moderators will make sure no cheaters gets past')
-		+feature('/graphics/features/nocrits.png', 'No randomness', 'Random crits, random bullet spread and everything random is taken out of the equation')
-		+feature('/graphics/features/nosentries.png', 'No sentries', "Engineers are prevented from placing sentries/mini sentries")
+		-
+			var list = [['/graphics/features/nolag.png', 'No server-side issues', "Proper maintenance ensures that the server is always running at its best"], ['/graphics/features/nobugs.png', 'No bugs', 'Impactful map glitches, as well as weapons/mechanics related bugs have been fixed.'],['/graphics/features/nortd.png', 'No plugins', 'No plugins like !rtd, !tp or !fov that can create an unfair advantage'], ['/graphics/features/nobots.png', 'No cheaters', ' A group of experienced admins and moderators will make sure no cheaters gets past'], ['/graphics/features/nocrits.png', 'No randomness', 'Random crits, random bullet spread and everything random is taken out of the equation'], ['/graphics/features/nosentries.png', 'No sentries', "Engineers are prevented from placing sentries/mini sentries"]]
+		each feature in list 
+			+featureTile(feature[0], feature[1], feature[2])
