@@ -1,7 +1,15 @@
 import User from '@typings/User';
 
-export const GROUP_PROFILE_URL = 'https://steamcommunity.com/groups/HightowerOGs';
-export const WEBAPI_PROFILE_URL = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002';
+const GROUP_PROFILE_URL = 'https://steamcommunity.com/groups/HightowerOGs';
+const WEBAPI_PROFILE_URL = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002';
+
+export const getGroupProfileUrl = (subpage: string) => {
+	return `${GROUP_PROFILE_URL}/${subpage}`;
+};
+
+export const getWebApiUrl = (query: string) => {
+	return `${WEBAPI_PROFILE_URL}/${query}`;
+};
 
 export const TF_GAMESERVER = {
 	type: 'tf2',

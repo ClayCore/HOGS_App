@@ -1,0 +1,22 @@
+mixin playerRow(avatar, name, score, timePlayed)
+	.playerBlock 
+		img(src=avatar)
+		p= name
+		p= score
+		p= timePlayed
+
+section#stats
+	.column
+		header Server statistics
+		//- TODO: Graph of player activity over time
+		canvas
+	.column 
+		header Active players
+
+		//- Player stats table
+
+		include ../players-table.pug
+
+		//- - var playerStats = [];
+		//- each player in playerStats 
+		//- 	+playerRow(player.avatar, player.name, player.score, player.timePlayed)
