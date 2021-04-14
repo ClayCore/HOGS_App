@@ -25,8 +25,8 @@ app.set('mod', NODE_ENV);
 app.set('views', 'client/template/');
 
 // All routes go here
-app.get('/', routes.homepage);
-app.get('/stats', routes.stats);
+app.use('/stats', routes.stats);
+app.use('/', routes.homepage);
 
 // If unspecified, serve static files
 app.use(express.static('client/build'));
