@@ -10,7 +10,7 @@ const queryPlayers = async () => {
 
 const stats = express.Router();
 stats.get('/', (req, res) => {
-	res.render('stats/index.pug');
+	res.render('stats/index.pug', { count: 1 });
 });
 
 stats.get('/players-table', (req, res) => {
