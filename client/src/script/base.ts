@@ -11,6 +11,9 @@ import { $ } from './utils.js';
 
 		if (playersTable) {
 			const response = await fetch('/api/stats');
+
+			console.log(response);
+
 			playersTable.innerHTML = await response.text();
 		}
 	});
