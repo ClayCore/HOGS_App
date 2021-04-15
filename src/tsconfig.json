@@ -2,8 +2,7 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
-		"rootDir": "src",
-		"baseUrl": "src",
+		"rootDir": ".",
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"skipLibCheck": true,
@@ -11,5 +10,5 @@
 		"target": "es6",
 		"typeRoots": ["node_modules/@types"],
 	},
-	"include": ["src/**/*", "typings/**/*"],
+	"include": ["./*/*"],
 }

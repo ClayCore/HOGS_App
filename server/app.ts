@@ -22,14 +22,14 @@ app.set('port', PORT);
 app.set('mod', NODE_ENV);
 
 // Use the client dir for rendering pug
-app.set('views', 'client/template/');
+app.set('views', 'template/');
 
 // All routes go here
 app.use('/stats', routes.stats);
 app.use('/', routes.homepage);
 
 // If unspecified, serve static files
-app.use(express.static('client/build'));
+app.use(express.static('build'));
 app.use(express.static('assets'));
 
 export default app;

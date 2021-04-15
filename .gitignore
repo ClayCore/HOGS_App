@@ -1,6 +1,8 @@
 .vscode/
 .vs/
 
+build/
+
 .cache/
 .DS_Store
 *.env
@@ -19,8 +21,6 @@
 *.pid
 *.pid.lock
 *.seed
-client/build/
-server/build/
 dist/
 public/
 target/

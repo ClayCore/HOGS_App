@@ -2,8 +2,8 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
-		"rootDir": "src",
-		"baseUrl": "src",
+		"rootDir": ".",
+		"baseUrl": ".",
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"skipLibCheck": true,
@@ -13,9 +13,9 @@
 		"typeRoots": ["node_modules/@types"],
 		"module": "commonjs",
 		"paths": {
-			"~/*": ["src/*"],
-			"@typings/*": ["../typings/*"]
+			"~/*": ["./*"],
+			"@typings/*": ["./typings/*"]
 		}
 	},
-	"include": ["src/**/*", "typings/**/*"]
+	"include": ["./**/*", "typings/**/*"]
 }
