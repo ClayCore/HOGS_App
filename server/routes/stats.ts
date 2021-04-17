@@ -5,6 +5,7 @@ import gamedig from 'gamedig';
 const queryPlayers = async () => {
 	const playersState = await gamedig.query(TF_GAMESERVER as gamedig.QueryOptions);
 
+	console.log(playersState);
 	return playersState.players;
 };
 
