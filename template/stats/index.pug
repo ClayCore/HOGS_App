@@ -1,7 +1,10 @@
 extends ../_base.pug
 
 block head
-	script(src='/script/players-data-fetcher.js' type='module')
+	//- ChartJS library
+	script(src='https://cdn.jsdelivr.net/npm/chart.js')
+
+	script(src='/script/players-data-fetcher.js', type='module')
 
 block content
 	main
