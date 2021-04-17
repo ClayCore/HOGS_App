@@ -17,5 +17,6 @@
 			"@typings/*": ["./typings/*"]
 		}
 	},
-	"include": ["./**/*", "typings/**/*"]
+	"include": ["./**/*", "typings/**/*"],
+	"exclude": ["./build/**/*"]
 }
