@@ -9,18 +9,6 @@
 @use 'styles/pages/home';
 @use 'styles/pages/stats';
 
-// All elements prior to the `main display` are basically containers
-div#wrapper,
-body,
-html {
-	@extend %root-container;
-	background: $main-bg;
-}
-
-body {
-	height: auto;
-}
-
 // Links are going to be white by default
 a {
 	color: $main-bg;
@@ -164,21 +152,6 @@ header#topbar {
 }
 
 div#page {
-	@extend %center-container;
-	flex-direction: column;
-
-	position: relative;
-
-	width: 100%;
-	height: 100%;
-
-	background-image: url('/graphics/intro.jpg');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position-y: 4rem;
-
-	color: $secondary-fg;
-
 	footer {
 		@extend %center-container;
 
@@ -192,7 +165,7 @@ div#page {
 
 		font-family: 'Roboto';
 		font-size: 1rem;
-		font-weight: 400;
+		font-weight: 300;
 		letter-spacing: 0.1rem;
 
 		text-shadow: 2px 2px 3px $shadow-color;
@@ -203,6 +176,8 @@ div#page {
 
 			width: 50%;
 			height: 100%;
+
+			line-height: 1.3rem;
 
 			a.tile {
 				@extend %center-container;
