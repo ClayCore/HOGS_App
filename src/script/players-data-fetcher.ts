@@ -39,9 +39,9 @@ const initChart = (): any => {
 			type: 'line',
 			data: chartData,
 			options: {
-				global: {
-					defaultFont: 'Roboto',
-				},
+				// global: {
+				// 	defaultFont: 'Roboto',
+				// },
 			},
 		};
 
