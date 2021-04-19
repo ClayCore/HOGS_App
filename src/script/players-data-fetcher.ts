@@ -1,5 +1,18 @@
 import { $ } from './utils.js';
 
+type ChartRecord = {
+	label?: string;
+	data?: number;
+};
+
+type Player = {
+	name: string;
+	raw: {
+		score: number;
+		time: number;
+	};
+};
+
 // How often to poll the server for player activity?
 // NOTE: in ms
 const PLAYER_FETCH = 5000;
@@ -25,21 +38,25 @@ const initChart = (): any => {
 		const chartConfig = {
 			type: 'line',
 			data: chartData,
-			options: {},
+			options: {
+				global: {
+					defaultFont: 'Roboto',
+				},
+			},
 		};
 
 		return new Chart(canvas, chartConfig);
 	}
 };
 
-const updateChart = (chart: any, label?: string, data?: number) => {
-	if (label) {
-		chart.data.labels.push(label);
+const updateChart = (chart: any, record?: ChartRecord) => {
+	if (record?.label) {
+		chart.data.labels.push(record?.label);
 	}
 
-	if (data) {
+	if (record?.data) {
 		chart.data.datasets.forEach((dataset: any) => {
-			dataset.data.push(data);
+			dataset.data.push(record?.data);
 		});
 	}
 
@@ -53,12 +70,29 @@ const updateChart = (chart: any, label?: string, data?: number) => {
 	// and update the table and the graph
 	const updatePlayers = () => {
 		fetch('/stats/players-table')
-			.then((response) => response.text())
-			.then((HTML) => {
+			.then((response) => response.json())
+			.then((playerData) => {
 				// Update the table div
 				const table = $('#playersTable');
 				if (table) {
-					table.innerHTML = HTML;
+					playerData.forEach((player: Player) => {
+						const playerDiv = document.createElement('div');
+						playerDiv.classList.add('.playerRow');
+
+						const name = document.createTextNode(player.name);
+						const score = document.createTextNode(player.raw.score.toString());
+						const timePlayed = document.createTextNode(player.raw.time.toString());
+
+						const nameBlock = document.createElement('p');
+						const scoreBlock = document.createElement('p');
+						const timeBlock = document.createElement('p');
+
+						nameBlock.appendChild(name);
+						scoreBlock.appendChild(score);
+						timeBlock.appendChild(timePlayed);
+
+						playerDiv.innerHTML += nameBlock.outerHTML + scoreBlock.outerHTML + timeBlock.outerHTML;
+					});
 				}
 
 				// TODO: update the chart with data fetched from the server
