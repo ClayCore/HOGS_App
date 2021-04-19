@@ -5,17 +5,28 @@ import gamedig from 'gamedig';
 const queryPlayers = async () => {
 	const playersState = await gamedig.query(TF_GAMESERVER as gamedig.QueryOptions);
 
-	console.log(playersState);
 	return playersState.players;
+};
+
+const processPlayers = async () => {
+	const players = await queryPlayers();
+
+	console.log(players);
+	players.forEach((player) => {
+		console.log(player);
+	});
+
+	return players;
 };
 
 const stats = express.Router();
 stats.get('/', (req, res) => {
-	res.render('stats/index.pug', { count: 1 });
+	res.render('stats/index.pug', { playerData: null });
 });
 
 stats.get('/players-table', (req, res) => {
-	res.render('stats/players-table.pug', { count: 6 });
+	const playerData = processPlayers();
+	res.render('stats/players-table.pug', { playerData: playerData });
 });
 
 export default stats;
