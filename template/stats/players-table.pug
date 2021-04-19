@@ -1,3 +1,10 @@
-tbody
-	each _ in Array(count)
-		tr: td dummy player
+mixin playerRow(name, score, timePlayed)
+	.playerBlock 
+		//- img(src=avatar)
+		p= name
+		p= score
+		p= timePlayed
+
+- var playerData = [];
+each player in playerData
+	+playerRow(playerData.name, playerData.raw.score, playerData.raw.time)
